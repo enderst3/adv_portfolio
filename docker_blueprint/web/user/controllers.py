@@ -1,9 +1,15 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 
 
-user = Blueprint('user', __name__)
+
+user = Blueprint('user', __name__, template_folder='templates')
 
 
 @user.route('/')
-def index():
-    return 'User page'
+def user_home():
+    return render_template('user.html')
+
+
+@user.route('/')
+def logout():
+    return render_template('logout.html')
