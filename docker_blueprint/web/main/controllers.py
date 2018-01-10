@@ -9,3 +9,7 @@ def home_page():
     return render_template('home.html')
 
 
+@main.route('/hello')
+def hello_page():
+    return render_template('hello.html')
+
