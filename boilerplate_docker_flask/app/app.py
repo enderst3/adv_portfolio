@@ -1,6 +1,7 @@
 from flask import Flask
 
 from app.blueprints.page import page
+from app.blueprints.admin import admin
 
 
 def create_app():
@@ -15,5 +16,6 @@ def create_app():
     app.config.from_pyfile('settings.py', silent=True)
 
     app.register_blueprint(page)
+    app.register_blueprint(admin)
 
     return app
