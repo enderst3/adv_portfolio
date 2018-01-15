@@ -6,6 +6,7 @@ services:
     command: >
       gunicorn -b 0.0.0.0:8000
         --access-logfile -
+        --access-logformat '%(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s" in %(D)sµs'
         --reload
         "app.app:create_app()"
     environment:

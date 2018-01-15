@@ -2,3 +2,6 @@ Flask==0.10.1
 
 # Application server for both dev and production
 gunicorn==19.4.5
+
+# Extensions.
+flask-debugtoolbar==0.10.0
