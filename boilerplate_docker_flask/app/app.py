@@ -8,7 +8,7 @@ from app.extensions import debug_toolbar, mail, csrf
 
 
 CELERY_TASK_LIST = [
-    'snakeeyes.blueprints.contact.tasks',
+    'app.blueprints.contact.tasks',
 ]
 
 

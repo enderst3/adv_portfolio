@@ -16,12 +16,41 @@
         <script src="https://code.jquery.com/jquery-1.12.2.min.js"
                 integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="
                 crossorigin="anonymous"></script>
-        {{ flash.render() }}
-        <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed"
+                        data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="{{ url_for('page.home') }}">
+                </a>
+                </div>
+            </div>
+        </nav>
+        <main class="container">
             {{ flash.render() }}
-        <h2>Hello! You are on the...</h2>
-        <h2>{% block body %}{% endblock %}</h2>
+    
+            <div class="md-margin-top">{% block heading %}{% endblock %}</div>
+            {% block body %}{% endblock %}
+        </main>
+          
+        <footer class="footer text-center">
+            <div class="container">
+                <ul class="list-inline">
+                <li class="text-muted">App &copy; 2018</li>
+                </ul>
+            </div>
+        </footer>
+
+        <script
+        src="{{ url_for('static', filename='scripts/vendor/bootstrap.min.js') }}">
+        </script>
     </body>
 </html>
