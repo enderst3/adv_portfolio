@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Items Page{% endblock %}
+
+<!-- {% block header %}App Home Page{% endblock %} -->
+
+{% block heading %}Welcome to the...{% endblock %}
+
+{% block body %}Items Page{% endblock %}
+
+{% block footer %}
+    <li><a href="{{ url_for('page.terms') }}">Terms of Service</a></li>
+    <li><a href="{{ url_for('contact.index') }}">Contact</a></li>
+{% endblock %}

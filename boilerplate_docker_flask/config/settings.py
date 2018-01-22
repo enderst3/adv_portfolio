@@ -20,3 +20,8 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_REDIS_MAX_CONNECTIONS = 5
+
+# SQLAlchemy.
+db_uri = 'postgresql://app:devpassword@postgres:5432/app'
+SQLALCHEMY_DATABASE_URI = db_uri
+SQLALCHEMY_TRACK_MODIFICATIONS = False

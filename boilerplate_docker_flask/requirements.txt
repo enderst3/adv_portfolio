@@ -8,6 +8,7 @@ flask-debugtoolbar==0.10.0
 Flask-Mail==0.9.1
 
 # Data and workers.
+Flask-SQLAlchemy==2.1
 redis==2.10.5
 celery==3.1.23
 
