@@ -1,1 +1,0 @@
-// Each quote in quote list. with delete button, and edit keywords

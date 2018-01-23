@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import 'bootstrap/dist/css/bootstrap.css';
 import { Jumbotron, Col, Panel } from 'react-bootstrap'
-import SearchBar from './components/SearchBar'
+import SearchBar from './SearchBar'
 import './App.css';
 
 

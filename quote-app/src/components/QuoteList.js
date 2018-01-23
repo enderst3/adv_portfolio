@@ -1,1 +1,0 @@
-// Saved quotes from database
