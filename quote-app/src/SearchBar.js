@@ -19,8 +19,8 @@ export default class SearchBar extends Component {
 
   render () {
     return (
-      <Panel.Body className='SearchBar'>
-        <h3>Search Your Quotes!</h3>
+      <Panel className='SearchBar'>
+        <h3>Search Your Saved Quotes</h3>
         <form>
           <FormControl
             id='quote-filter'
@@ -31,7 +31,7 @@ export default class SearchBar extends Component {
             onKeyPress={this.handleOnKeyPress}
           />
         </form>
-      </Panel.Body>
+      </Panel>
     )
   }
 }

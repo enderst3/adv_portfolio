@@ -4,9 +4,9 @@ import SearchBar from './SearchBar'
 import './App.css';
 
 
-// const url = "https://talaikis.com/api/quotes/random/"
+const url = "https://talaikis.com/api/quotes/random/"
 // const url = "http://quotes.rest/qod.json"
-const url = ''
+// const url = ''
 
 export default class App extends Component {
   constructor(props) {
