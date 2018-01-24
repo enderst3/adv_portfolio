@@ -1,14 +1,15 @@
-version: '2'
+version: '3'
 
 services:
-  postgres:
-    image: 'postgres:9.5'
+  mysql:
+    image: 'mysql:5.7.20'
     env_file:
       - '.env'
     volumes:
-      - ~/Documents/adv_portfolio/boilerplate_docker_flask/postgres:/var/lib/postgresql/data
+      - ~/Documents/adv_portfolio/boilerplate_docker_flask/mysql:/var/lib/mysql/data
     ports:
       - '5432:5432'
+      # mysql is on port 3306
 
   redis:
     image: 'redis:3.0-alpine'
