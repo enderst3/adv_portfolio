@@ -22,6 +22,7 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_REDIS_MAX_CONNECTIONS = 5
 
 # SQLAlchemy.
-db_uri = 'mysql://app:devpassword@mysql:5432/app'
+# db_uri = 'mysql://app:devpassword@mysql:5432/boiler'
+db_uri = 'mysql://app:devpassword@192.168.1.255:3306/boiler'
 SQLALCHEMY_DATABASE_URI = db_uri
 SQLALCHEMY_TRACK_MODIFICATIONS = False

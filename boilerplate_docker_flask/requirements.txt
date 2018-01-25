@@ -6,6 +6,7 @@ gunicorn==19.4.5
 # Extensions.
 flask-debugtoolbar==0.10.0
 Flask-Mail==0.9.1
+# Flask-Admin
 
 # Data and workers.
 Flask-SQLAlchemy==2.1

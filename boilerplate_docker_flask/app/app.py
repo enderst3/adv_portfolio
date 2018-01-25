@@ -1,8 +1,9 @@
 from flask import Flask, render_template
 from celery import Celery
+from flask_admin import Admin
 
 from app.blueprints.page import page
-from app.blueprints.admin import admin
+# from app.blueprints.admin import admin
 from app.blueprints.contact import contact
 from app.blueprints.items import items
 from app.extensions import debug_toolbar, mail, csrf, db
@@ -52,12 +53,15 @@ def create_app():
 
     app.logger.setLevel(app.config['LOG_LEVEL'])
 
+    admin = Admin(app)
+
     error_templates(app)
     app.register_blueprint(page)
-    app.register_blueprint(admin)
+    # app.register_blueprint(admin)
     app.register_blueprint(contact)
     app.register_blueprint(items)
     extensions(app)
+
 
     return app
 
