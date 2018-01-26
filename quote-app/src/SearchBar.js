@@ -1,7 +1,7 @@
 // bar to search saved quotes
 
 import React, {Component} from 'react'
-import {FormControl, Panel} from 'react-bootstrap'
+import {FormControl, Button} from 'react-bootstrap'
 import PropTypes from 'prop-types'
 
 
@@ -19,7 +19,7 @@ export default class SearchBar extends Component {
 
   render () {
     return (
-      <Panel className='SearchBar'>
+      <div className='SearchBar'>
         <h3>Search Your Saved Quotes</h3>
         <form>
           <FormControl
@@ -30,8 +30,15 @@ export default class SearchBar extends Component {
             onChange={this.textChangeCallback}
             onKeyPress={this.handleOnKeyPress}
           />
+          <br/>
+          <Button 
+            id='search-button'
+            onClick={this.textChangeCallback}
+          >
+            Search
+          </Button>
         </form>
-      </Panel>
+      </div>
     )
   }
 }

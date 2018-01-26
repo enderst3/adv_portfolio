@@ -1,12 +1,15 @@
 from flask import Flask, render_template
 from celery import Celery
 from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
 
 from app.blueprints.page import page
 # from app.blueprints.admin import admin
 from app.blueprints.contact import contact
 from app.blueprints.items import items
+from app.blueprints.items.models import Item
 from app.extensions import debug_toolbar, mail, csrf, db
+
 
 
 CELERY_TASK_LIST = [
@@ -53,11 +56,18 @@ def create_app():
 
     app.logger.setLevel(app.config['LOG_LEVEL'])
 
-    admin = Admin(app)
+    # # database
+    # db.create_all()
 
+    # admin
+    admin = Admin(app, name='dashboard')
+    admin.add_view(ModelView(Item, db.session))
+
+    # templates
     error_templates(app)
+
+    # blueprints
     app.register_blueprint(page)
-    # app.register_blueprint(admin)
     app.register_blueprint(contact)
     app.register_blueprint(items)
     extensions(app)
@@ -75,6 +85,7 @@ def extensions(app):
     debug_toolbar.init_app(app)
     mail.init_app(app)
     csrf.init_app(app)
+    db.init_app(app)
 
     return None
 
