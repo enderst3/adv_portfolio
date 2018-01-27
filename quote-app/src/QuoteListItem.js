@@ -12,8 +12,8 @@ const QuoteListItem = ({savedQuote}) => {
           className='Results'
         >
           <div className='SavedQuoteText'>
-            <p>"{savedQuote.quoteText}"</p>
-            <p>-{savedQuote.quoteAuthor}</p>
+            <p>"{savedQuote.quote}"</p>
+            <p>-{savedQuote.author}</p>
           </div>
         </ListGroupItem>
       </Col>

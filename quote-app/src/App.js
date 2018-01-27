@@ -31,10 +31,12 @@ export default class App extends Component {
   }
 
   onSave () {
+    // this.state.savedQuoteList.unshift(this.state.newQuote)
+    
     console.log('clicked')
     console.log('savedQuoteList', this.state.savedQuoteList)
     console.log('newQuote', this.state.newQuote)
-    // this.state.savedQuoteList.unshift(this.state.newQuote)
+
     this.setState({
       newQuoteList: this.state.savedQuoteList.unshift(this.state.newQuote)
     })
@@ -60,6 +62,7 @@ export default class App extends Component {
   // }
 
   // componentWillMount () {
+  // onShowSavedQuotes () {
     this.setState({
       savedQuoteList: QuoteData
     })
