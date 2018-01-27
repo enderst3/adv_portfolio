@@ -1,10 +1,3 @@
-// remove search quote until searchSaveQuotes is clicked
-// onKeyPress to trigger prevent default, and trigger quote search
-// populate viewSavedQuotes
-// add and remove quotes to QuoteData 
-// if statement for the compontentWillMount()
-// toggle searchBar
-
 
 import React, { Component } from 'react'
 import { Jumbotron, Col, Panel } from 'react-bootstrap'
@@ -14,7 +7,6 @@ import ButtonBar from './ButtonBar'
 import QuoteData from './QuoteData'
 import QuoteList from './QuoteList'
 import './App.css';
-// import QuoteListItem from './QuoteListItem';
 
 
 const url = "https://talaikis.com/api/quotes/random/"
@@ -28,20 +20,36 @@ export default class App extends Component {
     this.state = {
       newQuote: [],
       searchTerm: '',
-      savedQuoteList: []
+      savedQuoteList: [],
+      newQuoteList: []
     }
     this.onSearchTermInput = this.onSearchTermInput.bind(this)
-    this.onSeeQuote= this.onSeeQuote.bind(this)
-    // this.onSave = this.onSave.bind(this)
-    this.onShowSavedQuotes= this.onShowSavedQuotes.bind(this)
+    // this.onSeeQuote= this.onSeeQuote.bind(this)
+    this.onSave = this.onSave.bind(this)
+    // this.onShowSavedQuotes= this.onShowSavedQuotes.bind(this)
     // this.onAdd = this.onAdd.bind(this)
   }
 
+  onSave () {
+    this.state.savedQuoteList.unshift(this.state.newQuote)
+    console.log('clicked')
+    console.log('savedQuote', this.state.savedQuoteList)
+    console.log('newQuote', this.state.newQuote)
+
+    // QuoteData = this.state.savedQuoteList.unshift(this.state.newQuote)
+    // this.setState({
+    //   newQuoteList: 
+    // })
+    // console.log(this.state.newQuoteList)
+    // QuoteData = this.state.savedQuoteList
+  }
+
   onSearchTermInput (e) {
+    // console.log(e.target.value)
     this.setState({searchTerm: e.target.value})
   }
-  
-  onSeeQuote () {
+  componentWillMount () {
+  // onSeeQuote () {
     fetch(url)
       .then((response) => {
         return response.json();
@@ -51,21 +59,13 @@ export default class App extends Component {
       }).catch((err) => {
         console.log('parsing failed', err)
       })
-  }
+  // }
 
-  onShowSavedQuotes () {
+  // componentWillMount () {
     this.setState({
       savedQuoteList: QuoteData
     })
   }
-
-  // onShowSavedQuotes () {
-  //   savedQuoteList.forEach((savedQuote) => {
-  //     // console.log(savedQuote.quoteText)
-  //     // console.log(savedQuote.quoteAuthor)
-  //   })
-  // }
-
 
   render() {
     return (
@@ -83,14 +83,16 @@ export default class App extends Component {
               <ButtonBar
                 onSeeQuote={this.onSeeQuote}
                 onShowSavedQuotes={this.onShowSavedQuotes}
+                onSave={this.onSave}
               />
               
-              <SearchBar
+             {/* <SearchBar
                 searchTerm={this.state.searchTerm}
                 onSearchTermInput={this.onSearchTermInput}
-              />
+              />  */}
               <QuoteList
                 savedQuoteList={this.state.savedQuoteList}
+                searchTerm={this.state.searchTerm}
               />
               
             </Panel.Body>

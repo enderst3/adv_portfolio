@@ -1,4 +1,4 @@
-const QuoteData = [
+let QuoteData = [
     {
         quoteText: "Consider that not only do negative thoughts and emotions destroy our experience of peace, they also undermine our health.",
         quoteAuthor: "Dalai Lama",
