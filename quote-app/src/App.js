@@ -31,16 +31,14 @@ export default class App extends Component {
   }
 
   onSave () {
-    this.state.savedQuoteList.unshift(this.state.newQuote)
     console.log('clicked')
-    console.log('savedQuote', this.state.savedQuoteList)
+    console.log('savedQuoteList', this.state.savedQuoteList)
     console.log('newQuote', this.state.newQuote)
-
-    // QuoteData = this.state.savedQuoteList.unshift(this.state.newQuote)
-    // this.setState({
-    //   newQuoteList: 
-    // })
-    // console.log(this.state.newQuoteList)
+    // this.state.savedQuoteList.unshift(this.state.newQuote)
+    this.setState({
+      newQuoteList: this.state.savedQuoteList.unshift(this.state.newQuote)
+    })
+    console.log('newQuoteList', this.state.newQuoteList)
     // QuoteData = this.state.savedQuoteList
   }
 
@@ -67,6 +65,7 @@ export default class App extends Component {
     })
   }
 
+
   render() {
     return (
       <div className="App">
@@ -86,10 +85,10 @@ export default class App extends Component {
                 onSave={this.onSave}
               />
               
-             {/* <SearchBar
+              <SearchBar
                 searchTerm={this.state.searchTerm}
                 onSearchTermInput={this.onSearchTermInput}
-              />  */}
+              />
               <QuoteList
                 savedQuoteList={this.state.savedQuoteList}
                 searchTerm={this.state.searchTerm}
