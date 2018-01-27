@@ -8,21 +8,21 @@ export default class ButtonBar extends Component {
       <div className='buttons'>
         <Button
           id='save-button'
+          onClick={this.props.onSeeQuote}
+        >
+          See the Quote of the Day
+        </Button>
+        <Button
+          id='save-button'
           onClick={this.props.onSave}
         >
-          Save Quote
+          Save Quote of the Day
         </Button>
         <Button
           id='view-button'
-          onClick={this.props.onView}
+          onClick={this.props.onShowSavedQuotes}
         >
           View Saved Quotes
-        </Button>
-        <Button
-          id='search-button'
-          onClick={this.props.onSearch}
-        >
-          Search Saved Quotes
         </Button>
         <Button
           id='Add-button'

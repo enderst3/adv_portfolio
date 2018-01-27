@@ -2,7 +2,8 @@
 // onKeyPress to trigger prevent default, and trigger quote search
 // populate viewSavedQuotes
 // add and remove quotes to QuoteData 
-
+// if statement for the compontentWillMount()
+// toggle searchBar
 
 
 import React, { Component } from 'react'
@@ -10,12 +11,15 @@ import { Jumbotron, Col, Panel } from 'react-bootstrap'
 import SearchBar from './SearchBar'
 import DisplayQuote from './DisplayQuote'
 import ButtonBar from './ButtonBar'
+import QuoteData from './QuoteData'
+import QuoteList from './QuoteList'
 import './App.css';
+// import QuoteListItem from './QuoteListItem';
 
 
 const url = "https://talaikis.com/api/quotes/random/"
 // const url = "http://quotes.rest/qod.json"
-// const url = ''
+
 
 export default class App extends Component {
   constructor(props) {
@@ -23,12 +27,13 @@ export default class App extends Component {
 
     this.state = {
       newQuote: [],
-      searchTerm: ''
+      searchTerm: '',
+      savedQuoteList: []
     }
     this.onSearchTermInput = this.onSearchTermInput.bind(this)
+    this.onSeeQuote= this.onSeeQuote.bind(this)
     // this.onSave = this.onSave.bind(this)
-    // this.onView = this.onView.bind(this)
-    // this.onSearch = this.onSearch.bind(this)
+    this.onShowSavedQuotes= this.onShowSavedQuotes.bind(this)
     // this.onAdd = this.onAdd.bind(this)
   }
 
@@ -36,19 +41,30 @@ export default class App extends Component {
     this.setState({searchTerm: e.target.value})
   }
   
-  componentWillMount () {
+  onSeeQuote () {
     fetch(url)
       .then((response) => {
         return response.json();
       }).then(newQuote => {
         this.setState({newQuote: newQuote})
-        // console.log('parsed json', json.contents.quotes)
         console.log('newqoute= ',newQuote)
-        
       }).catch((err) => {
         console.log('parsing failed', err)
       })
   }
+
+  onShowSavedQuotes () {
+    this.setState({
+      savedQuoteList: QuoteData
+    })
+  }
+
+  // onShowSavedQuotes () {
+  //   savedQuoteList.forEach((savedQuote) => {
+  //     // console.log(savedQuote.quoteText)
+  //     // console.log(savedQuote.quoteAuthor)
+  //   })
+  // }
 
 
   render() {
@@ -65,17 +81,17 @@ export default class App extends Component {
                 />
               </Jumbotron>
               <ButtonBar
-
-              
-              
+                onSeeQuote={this.onSeeQuote}
+                onShowSavedQuotes={this.onShowSavedQuotes}
               />
+              
               <SearchBar
                 searchTerm={this.state.searchTerm}
                 onSearchTermInput={this.onSearchTermInput}
               />
-              
-            
-              
+              <QuoteList
+                savedQuoteList={this.state.savedQuoteList}
+              />
               
             </Panel.Body>
             <Panel.Footer>

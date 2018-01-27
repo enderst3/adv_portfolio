@@ -1,4 +1,4 @@
-export const QuoteData = [
+const QuoteData = [
     {
         quoteText: "Consider that not only do negative thoughts and emotions destroy our experience of peace, they also undermine our health.",
         quoteAuthor: "Dalai Lama",
@@ -38,5 +38,6 @@ export const QuoteData = [
         quoteAuthor: 'Khalil Gibran',
         quoteCategory: 'love'
     }
-
 ]
+
+export default QuoteData
