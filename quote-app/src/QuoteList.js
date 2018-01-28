@@ -11,6 +11,7 @@ const QuoteList = (props) => {
       <QuoteListItem
         // key={savedQuote.quoteCategory}
         savedQuote={savedQuote}
+        onDeleteQuote={props.onDeleteQuote}
       />
     )
   })

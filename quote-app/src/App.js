@@ -6,6 +6,7 @@ import DisplayQuote from './DisplayQuote'
 import ButtonBar from './ButtonBar'
 import QuoteData from './QuoteData'
 import QuoteList from './QuoteList'
+import AddQuote from './AddQuote'
 import './App.css';
 
 
@@ -21,19 +22,34 @@ export default class App extends Component {
       newQuote: [],
       searchTerm: '',
       savedQuoteList: [],
-      newQuoteList: []
+      newQuoteList: [],
+      addQuoteText: '',
+      addAuthorText: ''
     }
     this.onSearchTermInput = this.onSearchTermInput.bind(this)
-    // this.onSeeQuote= this.onSeeQuote.bind(this)
+    this.onDeleteQuote = this.onDeleteQuote.bind(this)
     this.onSave = this.onSave.bind(this)
+    this.addQuoteInput = this.addQuoteInput.bind(this)
+    this.addAuthorInput = this.addAuthorInput.bind(this)
+    this.addQuoteTextInput = this.addQuoteTextInput.bind(this)
+    // this.onSeeQuote= this.onSeeQuote.bind(this)
     // this.onShowSavedQuotes= this.onShowSavedQuotes.bind(this)
     // this.onAdd = this.onAdd.bind(this)
   }
 
+  
+  onSearchTermInput (e) {
+    // console.log(e.target.value)
+    this.setState({searchTerm: e.target.value})
+  }
+
+  onDeleteQuote (deleteQuote) {
+    console.log('Delete Quote Clicked')
+  }
+
   onSave () {
     // this.state.savedQuoteList.unshift(this.state.newQuote)
-    
-    console.log('clicked')
+    console.log(' Save Quote Clicked')
     console.log('savedQuoteList', this.state.savedQuoteList)
     console.log('newQuote', this.state.newQuote)
 
@@ -41,13 +57,24 @@ export default class App extends Component {
       newQuoteList: this.state.savedQuoteList.unshift(this.state.newQuote)
     })
     console.log('newQuoteList', this.state.newQuoteList)
-    // QuoteData = this.state.savedQuoteList
   }
 
-  onSearchTermInput (e) {
-    // console.log(e.target.value)
-    this.setState({searchTerm: e.target.value})
+  addQuoteInput (e) {
+    console.log('Add Entered Quote Clicked')
+    
   }
+
+  addAuthorInput (e) {
+    console.log(e.target.value)
+    this.setState({addAuthorText: e.target.value})
+  }
+
+  addQuoteTextInput (e) {
+    console.log(e.target.value)
+    this.setState({addQuoteText: e.target.value})
+  }
+
+
   componentWillMount () {
   // onSeeQuote () {
     fetch(url)
@@ -87,7 +114,13 @@ export default class App extends Component {
                 onShowSavedQuotes={this.onShowSavedQuotes}
                 onSave={this.onSave}
               />
-              
+              <AddQuote
+                addQuoteInput={this.addQuoteInput}
+                addQuoteText={this.state.addQuoteText}
+                addAuthorText={this.state.addAuthorText}
+                addQuoteTextInput={this.addQuoteTextInput}
+                addAuthorInput={this.addAuthorInput}
+              />
               <SearchBar
                 searchTerm={this.state.searchTerm}
                 onSearchTermInput={this.onSearchTermInput}
@@ -95,6 +128,7 @@ export default class App extends Component {
               <QuoteList
                 savedQuoteList={this.state.savedQuoteList}
                 searchTerm={this.state.searchTerm}
+                onDeleteQuote={this.onDeleteQuote}
               />
               
             </Panel.Body>
