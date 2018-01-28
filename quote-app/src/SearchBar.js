@@ -1,3 +1,4 @@
+// child of app
 // bar to search saved quotes
 
 import React, {Component} from 'react'
@@ -30,13 +31,6 @@ export default class SearchBar extends Component {
             onChange={this.textChangeCallback}
             onKeyPress={this.handleOnKeyPress}
           />
-          <br/>
-          <Button 
-            id='search-button'
-            onClick={this.textChangeCallback}
-          >
-            Search
-          </Button>
         </form>
       </div>
     )

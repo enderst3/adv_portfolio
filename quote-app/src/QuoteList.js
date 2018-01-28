@@ -1,3 +1,4 @@
+// child of app, parent of quote list item
 // containter for the quotes
 
 import React from 'react'

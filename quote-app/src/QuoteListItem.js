@@ -1,3 +1,4 @@
+// child of quotelist
 // each quote in the quote list
 
 import React, { Component } from 'react'

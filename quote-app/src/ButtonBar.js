@@ -1,3 +1,5 @@
+// child of app
+// button bar for app
 import React, {Component} from 'react'
 import {Button} from 'react-bootstrap'
 

@@ -1,4 +1,5 @@
-// display quote from app
+// child of app
+// display quote of the day
 
 import React from 'react'
 

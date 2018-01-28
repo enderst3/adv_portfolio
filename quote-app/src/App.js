@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import { Jumbotron, Col, Panel } from 'react-bootstrap'
 import SearchBar from './SearchBar'
@@ -8,6 +7,8 @@ import QuoteData from './QuoteData'
 import QuoteList from './QuoteList'
 import AddQuote from './AddQuote'
 import './App.css';
+
+// parent highest level
 
 
 const url = "https://talaikis.com/api/quotes/random/"
