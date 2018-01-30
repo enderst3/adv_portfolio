@@ -8,7 +8,7 @@ export default class AddQuote extends Component {
   constructor(props) {
     super(props)
     this.addQuoteData = this.props.addQuoteInput.bind(this)
-    this.quoteAuthorData = this.props.addAuthorInput.bind(this)
+    this.quoteAuthorData = this.props.addAuthorTextInput.bind(this)
     this.quoteTextData = this.props.addQuoteTextInput.bind(this)
   }
 

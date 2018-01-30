@@ -35,12 +35,11 @@ export default class App extends Component {
     this.onDeleteQuote = this.onDeleteQuote.bind(this)
     this.onSave = this.onSave.bind(this)
     this.addQuoteInput = this.addQuoteInput.bind(this)
-    this.addAuthorInput = this.addAuthorInput.bind(this)
+    this.addAuthorTextInput = this.addAuthorTextInput.bind(this)
     this.addQuoteTextInput = this.addQuoteTextInput.bind(this)
     this.openSearchBar = this.openSearchBar.bind(this)
     this.onAdd = this.onAdd.bind(this)
     this.onShowSavedQuotes= this.onShowSavedQuotes.bind(this)
-    
   }
 
   
@@ -61,8 +60,6 @@ export default class App extends Component {
     console.log('savedQuoteList', this.state.savedQuoteList)
     console.log('newQuote', this.state.newQuote)
 
-    // QuoteData = this.state.savedQuoteList
-    
     this.setState({
       newQuoteList: this.state.savedQuoteList.unshift(this.state.newQuote),
       myNewQuoteList: this.state.savedQuoteList.map((x) => Object.assign({}, x))
@@ -73,10 +70,9 @@ export default class App extends Component {
 
   addQuoteInput (e) {
     console.log('Add Entered Quote Clicked')
-    
   }
 
-  addAuthorInput (e) {
+  addAuthorTextInput (e) {
     console.log(e.target.value)
     this.setState({addAuthorText: e.target.value})
   }
@@ -144,7 +140,7 @@ export default class App extends Component {
                 addQuoteText={this.state.addQuoteText}
                 addAuthorText={this.state.addAuthorText}
                 addQuoteTextInput={this.addQuoteTextInput}
-                addAuthorInput={this.addAuthorInput}
+                addAuthorTextInput={this.addAuthorTextInput}
               />}
               {this.state.showSearchBar &&
               <SearchBar
