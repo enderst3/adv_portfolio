@@ -25,7 +25,11 @@ export default class App extends Component {
       savedQuoteList: [],
       newQuoteList: [],
       addQuoteText: '',
-      addAuthorText: ''
+      addAuthorText: '',
+      myNewQuoteList: [],
+      showAddQuote: false,
+      showSearchBar: false,
+      showQuoteList: false
     }
     this.onSearchTermInput = this.onSearchTermInput.bind(this)
     this.onDeleteQuote = this.onDeleteQuote.bind(this)
@@ -33,18 +37,21 @@ export default class App extends Component {
     this.addQuoteInput = this.addQuoteInput.bind(this)
     this.addAuthorInput = this.addAuthorInput.bind(this)
     this.addQuoteTextInput = this.addQuoteTextInput.bind(this)
-    // this.onSeeQuote= this.onSeeQuote.bind(this)
-    // this.onShowSavedQuotes= this.onShowSavedQuotes.bind(this)
-    // this.onAdd = this.onAdd.bind(this)
+    this.openSearchBar = this.openSearchBar.bind(this)
+    this.onAdd = this.onAdd.bind(this)
+    this.onShowSavedQuotes= this.onShowSavedQuotes.bind(this)
+    
   }
 
   
   onSearchTermInput (e) {
+    // need to finish
     // console.log(e.target.value)
     this.setState({searchTerm: e.target.value})
   }
 
   onDeleteQuote (deleteQuote) {
+    // need to finish 
     console.log('Delete Quote Clicked')
   }
 
@@ -54,10 +61,14 @@ export default class App extends Component {
     console.log('savedQuoteList', this.state.savedQuoteList)
     console.log('newQuote', this.state.newQuote)
 
+    // QuoteData = this.state.savedQuoteList
+    
     this.setState({
-      newQuoteList: this.state.savedQuoteList.unshift(this.state.newQuote)
+      newQuoteList: this.state.savedQuoteList.unshift(this.state.newQuote),
+      myNewQuoteList: this.state.savedQuoteList.map((x) => Object.assign({}, x))
     })
     console.log('newQuoteList', this.state.newQuoteList)
+    console.log('myNewQuoteList= ', this.state.myNewQuoteList)
   }
 
   addQuoteInput (e) {
@@ -75,9 +86,19 @@ export default class App extends Component {
     this.setState({addQuoteText: e.target.value})
   }
 
+  openSearchBar () {
+    this.setState({
+      showSearchBar: !this.state.showSearchBar
+    })
+  }
+
+  onAdd () {
+    this.setState({
+      showAddQuote: !this.state.showAddQuote
+    })
+  }
 
   componentWillMount () {
-  // onSeeQuote () {
     fetch(url)
       .then((response) => {
         return response.json();
@@ -87,11 +108,12 @@ export default class App extends Component {
       }).catch((err) => {
         console.log('parsing failed', err)
       })
-  // }
+  }
 
   // componentWillMount () {
-  // onShowSavedQuotes () {
+  onShowSavedQuotes () {
     this.setState({
+      showQuoteList: !this.state.showQuoteList,
       savedQuoteList: QuoteData
     })
   }
@@ -111,26 +133,30 @@ export default class App extends Component {
                 />
               </Jumbotron>
               <ButtonBar
-                onSeeQuote={this.onSeeQuote}
+                openSearchBar={this.openSearchBar}
                 onShowSavedQuotes={this.onShowSavedQuotes}
                 onSave={this.onSave}
+                onAdd={this.onAdd}
               />
+              {this.state.showAddQuote &&
               <AddQuote
                 addQuoteInput={this.addQuoteInput}
                 addQuoteText={this.state.addQuoteText}
                 addAuthorText={this.state.addAuthorText}
                 addQuoteTextInput={this.addQuoteTextInput}
                 addAuthorInput={this.addAuthorInput}
-              />
+              />}
+              {this.state.showSearchBar &&
               <SearchBar
                 searchTerm={this.state.searchTerm}
                 onSearchTermInput={this.onSearchTermInput}
-              />
+              />}
+              {this.state.showQuoteList &&
               <QuoteList
                 savedQuoteList={this.state.savedQuoteList}
                 searchTerm={this.state.searchTerm}
                 onDeleteQuote={this.onDeleteQuote}
-              />
+              />}
               
             </Panel.Body>
             <Panel.Footer>

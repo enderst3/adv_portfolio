@@ -1,3 +1,5 @@
+// sibling of App
+// needs to take onclick of add quote button from button bar
 import React, {Component} from 'react'
 import {FormControl, Button} from 'react-bootstrap'
 

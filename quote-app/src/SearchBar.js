@@ -2,7 +2,7 @@
 // bar to search saved quotes
 
 import React, {Component} from 'react'
-import {FormControl, Button} from 'react-bootstrap'
+import {FormControl} from 'react-bootstrap'
 import PropTypes from 'prop-types'
 
 

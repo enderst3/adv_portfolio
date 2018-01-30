@@ -10,6 +10,7 @@ export default class QuoteListItem extends Component {
     super(props)
     this.handleOnClick = this.handleOnClick.bind(this)
   }
+  
   handleOnClick (e) {
     this.props.onDeleteQuote(this.props.deleteQuote)
   }
