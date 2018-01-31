@@ -42,18 +42,20 @@ export default class App extends Component {
     this.onShowSavedQuotes= this.onShowSavedQuotes.bind(this)
   }
 
-  
+  // search term
   onSearchTermInput (e) {
     // need to finish
     // console.log(e.target.value)
     this.setState({searchTerm: e.target.value.toLowerCase()})
   }
-
+  
+  // Delete quote button
   onDeleteQuote (deleteQuote) {
     // need to finish 
     console.log('Delete Quote Clicked')
   }
 
+  // Save the Quote of the day
   onSave () {
     // this.state.savedQuoteList.unshift(this.state.newQuote)
     console.log(' Save Quote Clicked')
@@ -68,32 +70,38 @@ export default class App extends Component {
     console.log('myNewQuoteList= ', this.state.myNewQuoteList)
   }
 
+  // Add a quote of your own
   addQuoteInput (e) {
     console.log('Add Entered Quote Clicked')
   }
 
+  // Author name for add quote
   addAuthorTextInput (e) {
     console.log(e.target.value)
     this.setState({addAuthorText: e.target.value})
   }
 
+  // Quote text for add quote
   addQuoteTextInput (e) {
     console.log(e.target.value)
     this.setState({addQuoteText: e.target.value})
   }
 
+  // Dispaly or remove search bar from screen
   openSearchBar () {
     this.setState({
       showSearchBar: !this.state.showSearchBar
     })
   }
 
+  // Display add quote section on the screen
   onAdd () {
     this.setState({
       showAddQuote: !this.state.showAddQuote
     })
   }
 
+  // Calls quote of the day api on page load
   componentWillMount () {
     fetch(url)
       .then((response) => {
@@ -106,7 +114,7 @@ export default class App extends Component {
       })
   }
 
-  // componentWillMount () {
+  // Displays saved quotes
   onShowSavedQuotes () {
     this.setState({
       showQuoteList: !this.state.showQuoteList,

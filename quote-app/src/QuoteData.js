@@ -40,10 +40,5 @@ let QuoteData = [
     }
 ]
 
-// QuoteData.forEach((item) => {
-//     console.log(item.quote.toLowerCase())
-//     console.log(item.author.toLowerCase())
-//     console.log(item.category.toLowerCase()) 
-// })
 
 export default QuoteData

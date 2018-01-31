@@ -23,6 +23,8 @@ CELERY_REDIS_MAX_CONNECTIONS = 5
 
 # SQLAlchemy.
 # db_uri = 'mysql://app:devpassword@mysql:5432/boiler'
-db_uri = 'mysql+pymysql://app:devpassword@192.168.1.255:3306/boiler'
+db_uri = 'mysql+pymysql://python:devpassword@192.168.1.247:3306/app'
 SQLALCHEMY_DATABASE_URI = db_uri
-SQLALCHEMY_TRACK_MODIFICATIONS = True
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+SQLALCHEMY_POOL_TIMEOUT = 30
+SQLALCHEMY_POOL_RECYCLE = 30

@@ -55,9 +55,11 @@ def create_app():
     app.config.from_pyfile('settings.py', silent=True)
 
     app.logger.setLevel(app.config['LOG_LEVEL'])
+    
 
     # # database
     # db.create_all()
+    db.init_app(app)
 
     # admin
     admin = Admin(app, name='dashboard')
