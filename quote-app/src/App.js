@@ -46,7 +46,7 @@ export default class App extends Component {
   onSearchTermInput (e) {
     // need to finish
     // console.log(e.target.value)
-    this.setState({searchTerm: e.target.value})
+    this.setState({searchTerm: e.target.value.toLowerCase()})
   }
 
   onDeleteQuote (deleteQuote) {
