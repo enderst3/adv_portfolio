@@ -3,7 +3,7 @@ from app.extensions import db
 
 
 class Item(db.Model):
-    __tablename__ = 'items'
+    __tablename__ = 'item'
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     name = db.Column(db.String(120), unique=True, nullable=False)
 

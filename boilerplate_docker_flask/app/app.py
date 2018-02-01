@@ -4,7 +4,6 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
 from app.blueprints.page import page
-# from app.blueprints.admin import admin
 from app.blueprints.contact import contact
 from app.blueprints.items import items
 from app.blueprints.items.models import Item
@@ -57,7 +56,7 @@ def create_app():
     app.logger.setLevel(app.config['LOG_LEVEL'])
     
 
-    # # database
+    # database
     # db.create_all()
     db.init_app(app)
 

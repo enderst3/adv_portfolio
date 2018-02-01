@@ -14,7 +14,7 @@ def item():
 def item_count():
     eng = db.create_engine(current_app.config['SQLALCHEMY_DATABASE_URI'])
     con = eng.connect()
-    stmt = db.text('''SELECT COUNT(*) FROM items''')
+    stmt = db.text('''SELECT COUNT(*) FROM item''')
     rs = con.execute(stmt)
 
     data = rs.fetchone()[0]
