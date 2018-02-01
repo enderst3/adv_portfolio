@@ -8,12 +8,13 @@ items = Blueprint('items', __name__, template_folder='templates')
 def item():
     return render_template('items/items.html')
 
+
+# test the db to see if connecting
 @items.route('/count')
 def item_count():
-    # return 'hello from the count page!'
     eng = db.create_engine(current_app.config['SQLALCHEMY_DATABASE_URI'])
     con = eng.connect()
-    stmt = db.text('''SELECT COUNT(*) FROM Items''')
+    stmt = db.text('''SELECT COUNT(*) FROM items''')
     rs = con.execute(stmt)
 
     data = rs.fetchone()[0]
