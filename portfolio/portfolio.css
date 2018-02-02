@@ -15,11 +15,25 @@
 }
 
 body {
-  background-color: #eeeeee;
+  background-color: #999797d0;
+}
+
+#body_header {
+  font-size: 31px;
+}
+
+p {
+  font-size: 21px;
+  font-weight: 200;
 }
 
 .img-responsive {
-  border-radius: 5px;
+  border-radius: 45px;
+  box-shadow: 10px 10px 30px black;
+}
+
+.img-responsive:hover {
+  box-shadow: 5px 5px 30px black;
 }
 
 .container-contact {
@@ -52,4 +66,8 @@ footer {
   background-color: #dddddd;
   padding: 25px;
   opacity: 0.8;
+}
+
+footer p {
+  font-size: 16px;
 }
