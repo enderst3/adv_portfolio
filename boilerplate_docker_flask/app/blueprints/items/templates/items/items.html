@@ -4,9 +4,29 @@
 
 <!-- {% block header %}App Home Page{% endblock %} -->
 
-{% block heading %}Welcome to the...{% endblock %}
+{% block heading %}
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type=text/javascript>
+        $(document).ready(function(){
+        // $.ajax({ url: "/get_item/<int:id>",
+        $.ajax({ url: "/get_item/5",
+            context: document.body,
+            success: function(data){
+                $("#show_item").html(data)
+                console.log(data)
+            }});
+        });
+    </script>
+</head>
+{% endblock %}
 
-{% block body %}Items Page{% endblock %}
+{% block body %}
+<div class='container'>
+    <h3>Items...</h3>
+    <h5 id='show_item'></h5>
+</div>
+{% endblock %}
 
 {% block footer %}
     <li><a href="{{ url_for('page.terms') }}">Terms of Service</a></li>

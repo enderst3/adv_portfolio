@@ -57,7 +57,6 @@ def create_app():
     
 
     # database
-    # db.create_all()
     db.init_app(app)
 
     # admin
