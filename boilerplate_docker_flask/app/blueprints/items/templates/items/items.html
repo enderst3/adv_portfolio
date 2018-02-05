@@ -5,12 +5,13 @@
 <!-- {% block header %}App Home Page{% endblock %} -->
 
 {% block heading %}
-<head>
+<!-- <head>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type=text/javascript>
         $(document).ready(function(){
-        // $.ajax({ url: "/get_item/<int:id>",
-        $.ajax({ url: "/get_item/5",
+            
+        $.ajax({ url: "/get_item/<int:id>",
+        // $.ajax({ url: "/get_item/",
             context: document.body,
             success: function(data){
                 $("#show_item").html(data)
@@ -18,13 +19,16 @@
             }});
         });
     </script>
-</head>
+</head> -->
 {% endblock %}
 
 {% block body %}
 <div class='container'>
-    <h3>Items...</h3>
-    <h5 id='show_item'></h5>
+    <h3>Items directly from db...</h3>
+    {% for item in items: %}
+        <h5 id='show_item'>{{ item[1] }}</h5>
+    {% endfor %}
+    <h3>Items from get_item pages...</h3>
 </div>
 {% endblock %}
 

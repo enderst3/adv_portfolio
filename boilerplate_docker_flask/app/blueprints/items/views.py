@@ -7,7 +7,14 @@ items = Blueprint('items', __name__, template_folder='templates')
 
 @items.route('/items')
 def item():
-    return render_template('items/items.html')
+    eng = db.create_engine(current_app.config['SQLALCHEMY_DATABASE_URI'])
+    con = eng.connect()
+    stmt = db.text('''SELECT * FROM item''')
+    rs = con.execute(stmt)
+
+    items = rs.fetchall()
+    # return "%s <br/> %s" % (stmt, items)
+    return render_template('items/items.html', items = items)
 
 # test the db to see if connecting
 @items.route('/count')
