@@ -1,9 +1,9 @@
 # Quote of the Day App
 
-I am making this app so I can experience using React with a database.
+I am making this app so I can experience using React with a firebase database.
 
 To see the app please download it then use:
 #### npm install
-#### then
+After the install is complete use:
 #### npm start
 

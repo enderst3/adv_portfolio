@@ -2,8 +2,6 @@
 
 {% block title %}Items Page{% endblock %}
 
-<!-- {% block header %}App Home Page{% endblock %} -->
-
 {% block heading %}
    
     <!-- <head>
@@ -26,11 +24,17 @@
 
 {% block body %}
 <div class='container'>
-    <h3>Items directly from db...</h3>
-    {% for item in items: %}
-        <h5 id='show_item'>{{ item[1] }}</h5>
-    {% endfor %}
-    <h3>Items from get_item pages...</h3>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h3>Items...</h3>
+      <div class="well well-lg">
+        {% for item in items: %}
+            <h5 id='show_item'>{{ item[1] }}</h5>
+        {% endfor %}
+      </div>
+    </div>  
+  </div>  
+    <!-- <h3>Items from get_item pages...</h3> -->
 </div>
 {% endblock %}
 

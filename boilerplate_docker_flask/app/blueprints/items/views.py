@@ -5,6 +5,7 @@ from .models import Item
 
 items = Blueprint('items', __name__, template_folder='templates')
 
+# put items on the items page
 @items.route('/items')
 def item():
     eng = db.create_engine(current_app.config['SQLALCHEMY_DATABASE_URI'])
@@ -13,7 +14,6 @@ def item():
     rs = con.execute(stmt)
 
     items = rs.fetchall()
-    # return "%s <br/> %s" % (stmt, items)
     return render_template('items/items.html', items = items)
 
 # test the db to see if connecting
