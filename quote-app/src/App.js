@@ -3,16 +3,17 @@ import { Jumbotron, Col, Panel } from 'react-bootstrap'
 import SearchBar from './SearchBar'
 import DisplayQuote from './DisplayQuote'
 import ButtonBar from './ButtonBar'
-import QuoteData from './QuoteData'
+// import QuoteData from './QuoteData'
 import QuoteList from './QuoteList'
 import AddQuote from './AddQuote'
 import './App.css';
 
 // parent highest level
 
-
+const savedQuoteUrl = "https://quote-of-the-day-34f3a.firebaseio.com"
 const url = "https://talaikis.com/api/quotes/random/"
 // const url = "http://quotes.rest/qod.json"
+// fb link = https://quote-of-the-day-34f3a.firebaseio.com
 
 
 export default class App extends Component {
@@ -61,7 +62,11 @@ export default class App extends Component {
     console.log(' Save Quote Clicked')
     console.log('savedQuoteList', this.state.savedQuoteList)
     console.log('newQuote', this.state.newQuote)
-
+    console.log('savedquotelist =', this.state.savedQuoteList)
+    console.log(this.state.savedQuoteList.length+1)
+    if (!('id' in this.state.newQuote)) {
+      this.state.newQuote.id = this.state.savedQuoteList.length+1
+    }
     this.setState({
       newQuoteList: this.state.savedQuoteList.unshift(this.state.newQuote),
       myNewQuoteList: this.state.savedQuoteList.map((x) => Object.assign({}, x))
@@ -114,12 +119,18 @@ export default class App extends Component {
       })
   }
 
-  // Displays saved quotes
+  // Displays saved quotes data from firebase
   onShowSavedQuotes () {
-    this.setState({
-      showQuoteList: !this.state.showQuoteList,
-      savedQuoteList: QuoteData
-    })
+    fetch(`${savedQuoteUrl}/QuoteData.json`)
+      .then((response) => {
+        return response.json()
+      })
+      .then((QuoteData) => {
+        this.setState({
+          showQuoteList: !this.state.showQuoteList,
+          savedQuoteList: QuoteData
+        })
+      })
   }
 
 

@@ -10,7 +10,7 @@ const QuoteList = (props) => {
   const quoteItems = props.savedQuoteList.map((savedQuote) => {
     return (
       <QuoteListItem
-        // key={savedQuote.quoteCategory}
+        key={savedQuote.id}
         savedQuote={savedQuote}
         onDeleteQuote={props.onDeleteQuote}
       />
