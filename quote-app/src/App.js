@@ -1,19 +1,30 @@
 import React, { Component } from 'react'
 import { Jumbotron, Col, Panel } from 'react-bootstrap'
+import * as firebase from 'firebase'
 import SearchBar from './SearchBar'
 import DisplayQuote from './DisplayQuote'
 import ButtonBar from './ButtonBar'
-// import QuoteData from './QuoteData'
 import QuoteList from './QuoteList'
 import AddQuote from './AddQuote'
 import './App.css';
 
 // parent highest level
-
 const savedQuoteUrl = "https://quote-of-the-day-34f3a.firebaseio.com"
 const url = "https://talaikis.com/api/quotes/random/"
 // const url = "http://quotes.rest/qod.json"
-// fb link = https://quote-of-the-day-34f3a.firebaseio.com
+
+const config = {
+  apiKey: "AIzaSyDqpJjGZngXu94UGZvKOhVHWieVtioyK08",
+  authDomain: "quote-of-the-day-34f3a.firebaseapp.com",
+  databaseURL: "https://quote-of-the-day-34f3a.firebaseio.com",
+  projectId: "quote-of-the-day-34f3a",
+  storageBucket: "quote-of-the-day-34f3a.appspot.com",
+  messagingSenderId: "781183031044"
+};
+firebase.initializeApp(config)
+
+const database = firebase.database()
+const ref = database.ref('QuoteData')
 
 
 export default class App extends Component {
@@ -58,21 +69,30 @@ export default class App extends Component {
 
   // Save the Quote of the day
   onSave () {
-    // this.state.savedQuoteList.unshift(this.state.newQuote)
+    // if (!('id' in this.state.newQuote)) {
+    //   this.state.newQuote.id = this.state.savedQuoteList.length+1
+    // }
+
+    let data = {
+      quote: this.state.newQuote.quote,
+      author: this.state.newQuote.author,
+      // id: this.state.newQuote.id,
+      category: this.state.newQuote.cat,
+    }
     console.log(' Save Quote Clicked')
-    console.log('savedQuoteList', this.state.savedQuoteList)
     console.log('newQuote', this.state.newQuote)
     console.log('savedquotelist =', this.state.savedQuoteList)
-    console.log(this.state.savedQuoteList.length+1)
-    if (!('id' in this.state.newQuote)) {
-      this.state.newQuote.id = this.state.savedQuoteList.length+1
-    }
+    // console.log(this.state.savedQuoteList.length+1)
+    
+
     this.setState({
       newQuoteList: this.state.savedQuoteList.unshift(this.state.newQuote),
       myNewQuoteList: this.state.savedQuoteList.map((x) => Object.assign({}, x))
     })
-    console.log('newQuoteList', this.state.newQuoteList)
-    console.log('myNewQuoteList= ', this.state.myNewQuoteList)
+    // console.log('newQuoteList', this.state.newQuoteList)
+    // console.log('myNewQuoteList= ', this.state.myNewQuoteList)
+
+    ref.push(data)
   }
 
   // Add a quote of your own
