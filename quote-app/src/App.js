@@ -63,8 +63,10 @@ export default class App extends Component {
   
   // Delete quote button
   onDeleteQuote (deleteQuote) {
+    alert(deleteQuote)
     // need to finish 
     console.log('Delete Quote Clicked')
+    console.log(deleteQuote)
   }
 
   // Save the Quote of the day
@@ -83,14 +85,16 @@ export default class App extends Component {
     console.log('newQuote', this.state.newQuote)
     console.log('savedquotelist =', this.state.savedQuoteList)
     // console.log(this.state.savedQuoteList.length+1)
-    
+
+    // this.setState(this.state.savedQuoteList)
+    const makeNewQuoteList = this.state.savedQuoteList.map((x) => Object.assign({}, x))
 
     this.setState({
       newQuoteList: this.state.savedQuoteList.unshift(this.state.newQuote),
-      myNewQuoteList: this.state.savedQuoteList.map((x) => Object.assign({}, x))
+      myNewQuoteList: makeNewQuoteList
     })
-    // console.log('newQuoteList', this.state.newQuoteList)
-    // console.log('myNewQuoteList= ', this.state.myNewQuoteList)
+    console.log('newQuoteList', this.state.newQuoteList)
+    console.log('myNewQuoteList= ', this.state.myNewQuoteList)
 
     ref.push(data)
   }
@@ -172,6 +176,7 @@ export default class App extends Component {
                 onShowSavedQuotes={this.onShowSavedQuotes}
                 onSave={this.onSave}
                 onAdd={this.onAdd}
+                
               />
               {this.state.showAddQuote &&
               <AddQuote
