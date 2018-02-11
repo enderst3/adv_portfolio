@@ -121,7 +121,7 @@ class App extends Component {
         return response.json();
       }).then(newQuote => {
         this.setState({newQuote: newQuote})
-        console.log(newQuote)
+        console.log('success', newQuote)
       }).catch((err) => {
         console.log('parsing failed', err)
       })
@@ -191,7 +191,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className='app'>
+      <div className='App'>
         <header>
             <div className='wrapper'>
               <h1>Quote of the Day</h1>
