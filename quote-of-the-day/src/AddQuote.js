@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {FormControl, Button, Panel, FormGroup} from 'react-bootstrap'
+import {FormControl, Button, Panel, FormGroup, Well} from 'react-bootstrap'
 
 
 export default class AddQuote extends Component {
@@ -11,7 +11,7 @@ export default class AddQuote extends Component {
 
   render () {
     return (
-      <Panel className='add-item'>
+      <Well className='add-item'>
         <form
           onSubmit={this.handleAddSubmit}
         >
@@ -19,26 +19,27 @@ export default class AddQuote extends Component {
             <FormControl
               type="text"
               name="author"
-              placeholder="Author of the Quote..."
+              placeholder="Add Author of the Quote..."
               onChange={this.handleChange}
               value={this.props.author}
             />
+            <br/>
             <FormControl
               type="text"
               name="quote"
-              placeholder="Quote text..."
+              placeholder="Add Quote text..."
               onChange={this.handleChange}
               value={this.props.quote}
             />
+            <br />
             <Button
-              bsSize='small'
               type='submit'
             >
               Add Quote
             </Button>
           </FormGroup>
         </form>
-      </Panel>
+      </Well>
     )
   }
 } 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Jumbotron, Col, Panel, Button } from 'react-bootstrap'
+import { Jumbotron, Col, Panel, Button, ListGroupItem } from 'react-bootstrap'
+import { InstantSearch, SearchBox, Hits } from 'react-instantsearch/dom'
 import DisplayQuoteOd from './DisplayQuoteOd'
 import firebase from './firebase'
 import QuoteList from './QuoteList'
@@ -10,6 +11,33 @@ const url = "https://talaikis.com/api/quotes/random/"
 const itemsRef = firebase.database().ref('QuoteData')
 
 // Needs SearchQuoteBar
+// add proptypes
+// set up linting
+
+// =================================
+// const Hit = ({ hit }) =>
+// <Col md={10} mdOffset={1}>
+//   <ListGroupItem 
+    
+//   >
+//     <p>"{hit.quote}"</p>
+//     <p>-{hit.author}</p>
+//     <Button
+//       bsSize='xsmall'
+//       onClick={this.handleDeleteClick}
+//       // value={this.props.item.id}
+//     >
+//       Delete Quote
+//     </Button>
+//   </ListGroupItem>
+// </Col>
+
+// const Content = () =>
+//   <div className='content'>
+//     <Hits hitComponent={Hit} />
+//   </div>
+
+// =================================
 
 class App extends Component {
   constructor(props) {
@@ -118,6 +146,16 @@ class App extends Component {
                 submitAddedQuote={this.submitAddedQuote}
                 addQuoteInput={this.addQuoteInput}
               />
+              {/* <InstantSearch
+                appId="U7JUNZSA3C"
+                apiKey="616990183d84b364679688900dba1266"
+                indexName="QuoteData"
+              >
+                <SearchBox
+                  translations={{placeholder:'Search Your Quotes...'}}
+                />
+                <Content />
+              </InstantSearch> */}
               <QuoteList 
                 items={this.state.items}
                 removeItem={this.removeItem}
