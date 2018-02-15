@@ -8,6 +8,7 @@ export default class QuoteListItem extends Component {
   }
   
   handleDeleteClick (e) {
+    e.preventDefault()
     this.props.removeItem(this.props.item.id)
   }
   
