@@ -16,27 +16,27 @@ const itemsRef = firebase.database().ref('QuoteData')
 // set up linting
 
 
-const Hit = ({ hit }) =>
-<Col md={10} mdOffset={1}>
-  <ListGroupItem 
+// const Hit = ({ hit }) =>
+// <Col md={10} mdOffset={1}>
+//   <ListGroupItem 
     
-  >
-    <p>"{hit.quote}"</p>
-    <p>-{hit.author}</p>
-    {/* <Button
-      bsSize='xsmall'
-      onClick={this.handleDeleteClick}
-      // value={this.props.item.id}
-    >
-      Delete Quote
-    </Button> */}
-  </ListGroupItem>
-</Col>
+//   >
+//     <p>"{hit.quote}"</p>
+//     <p>-{hit.author}</p>
+//     {/* <Button
+//       bsSize='xsmall'
+//       onClick={this.handleDeleteClick}
+//       // value={this.props.item.id}
+//     >
+//       Delete Quote
+//     </Button> */}
+//   </ListGroupItem>
+// </Col>
 
-const Content = () =>
-  <div className='content'>
-    <Hits hitComponent={Hit} />
-  </div>
+// const Content = () =>
+//   <div className='content'>
+//     <Hits hitComponent={Hit} />
+//   </div>
 
 class App extends Component {
   constructor(props) {
@@ -47,15 +47,15 @@ class App extends Component {
       author: '',
       quote: '',
       items: [],
-      showSearchBar: false,
-      showQuoteList: false
+      // showSearchBar: false,
+      // showQuoteList: false
     }
     this.saveQuoteOd = this.saveQuoteOd.bind(this)
     this.submitAddedQuote = this.submitAddedQuote.bind(this)
     this.addQuoteInput = this.addQuoteInput.bind(this)
-    this.openSearchBar = this.openSearchBar.bind(this)
-    this.showSavedQuotes = this.showSavedQuotes.bind(this)
-    this.addQuote = this.addQuote.bind(this)
+    // this.openSearchBar = this.openSearchBar.bind(this)
+    // this.showSavedQuotes = this.showSavedQuotes.bind(this)
+    // this.addQuote = this.addQuote.bind(this)
   }
 
 
@@ -71,6 +71,21 @@ class App extends Component {
       }).catch((err) => {
         console.log('parsing failed', err)
       })
+
+    itemsRef.on('value', (snapshot) => {
+      let items = snapshot.val()
+      let newState =[]
+      for (let item in items) {
+        newState.push({
+          id: item,
+          author: items[item].author,
+          quote: items[item].quote
+        })
+      }
+      this.setState({
+        items: newState.reverse()
+      })
+    })
   }
 
   // Save Quote of the Day
@@ -119,23 +134,23 @@ class App extends Component {
     })
   }
 
-  showSavedQuotes () {
-    itemsRef.on('value', (snapshot) => {
-      let items = snapshot.val()
-      let newState =[]
-      for (let item in items) {
-        newState.push({
-          id: item,
-          author: items[item].author,
-          quote: items[item].quote
-        })
-      }
-      this.setState({
-        items: newState.reverse(),
-        showQuoteList: !this.state.showQuoteList
-      })
-    })
-  }
+  // showSavedQuotes () {
+  //   itemsRef.on('value', (snapshot) => {
+  //     let items = snapshot.val()
+  //     let newState =[]
+  //     for (let item in items) {
+  //       newState.push({
+  //         id: item,
+  //         author: items[item].author,
+  //         quote: items[item].quote
+  //       })
+  //     }
+  //     this.setState({
+  //       items: newState.reverse(),
+  //       showQuoteList: !this.state.showQuoteList
+  //     })
+  //   })
+  // }
 
   addQuote () {
     this.setState({
@@ -166,13 +181,13 @@ class App extends Component {
                 showSavedQuotes={this.showSavedQuotes}
                 addQuote={this.addQuote}
               />
-              {this.state.showAddQuote &&
+              {/* {this.state.showAddQuote && */}
               <AddQuote
                 submitAddedQuote={this.submitAddedQuote}
                 addQuoteInput={this.addQuoteInput}
               />
-              }
-              {this.state.showSearchBar &&
+              {/* } */}
+              {/* {this.state.showSearchBar &&
               <InstantSearch
                 appId="U7JUNZSA3C"
                 apiKey="616990183d84b364679688900dba1266"
@@ -183,13 +198,13 @@ class App extends Component {
                 />
                 <Content />
               </InstantSearch>
-              }
-              {this.state.showQuoteList &&
+              } */}
+              {/* {this.state.showQuoteList && */}
               <QuoteList 
                 items={this.state.items}
                 removeItem={this.removeItem}
               />
-              }
+              {/* } */}
               
             </Panel.Body>
             <Panel.Footer>
