@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {Button, Col, ListGroupItem} from 'react-bootstrap'
+import React, { Component } from 'react'
+import { Button, Col, ListGroupItem } from 'react-bootstrap'
 import { InstantSearch, SearchBox, Hits } from 'react-instantsearch/dom'
 import QuoteList from './QuoteList'
 

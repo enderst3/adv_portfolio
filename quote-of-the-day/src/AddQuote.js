@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {FormControl, Button, FormGroup, Well} from 'react-bootstrap'
+import { FormControl, Button, FormGroup, Well } from 'react-bootstrap'
 
 
 export default class AddQuote extends Component {

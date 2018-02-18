@@ -1,6 +1,6 @@
 import React from 'react'
 import QuoteListItem from './QuoteListItem'
-import {ListGroup} from 'react-bootstrap'
+import { ListGroup } from 'react-bootstrap'
 
 
 const QuoteList = (props) => {

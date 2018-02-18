@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Jumbotron, Col, Panel, Button, ListGroupItem } from 'react-bootstrap'
-import { InstantSearch, SearchBox, Hits } from 'react-instantsearch/dom'
+import { Jumbotron, Col, Panel, Button } from 'react-bootstrap'
 import DisplayQuoteOd from './DisplayQuoteOd'
 import firebase from './firebase'
 import AddQuote from './AddQuote'
@@ -23,14 +22,12 @@ class App extends Component {
       author: '',
       quote: '',
       items: [],
-      showSearchBar: false,
-      showQuoteList: false
+      showSearchBar: false
     }
     this.saveQuoteOd = this.saveQuoteOd.bind(this)
     this.submitAddedQuote = this.submitAddedQuote.bind(this)
     this.addQuoteInput = this.addQuoteInput.bind(this)
     this.openSearchBar = this.openSearchBar.bind(this)
-    this.addQuote = this.addQuote.bind(this)
   }
 
   // displays quote of the day
@@ -106,13 +103,6 @@ class App extends Component {
     console.log('show search clicked')
     this.setState({
       showSearchBar: !this.state.showSearchBar
-    })
-  }
-
-  addQuote () {
-    this.setState({
-      showAddQuote: !this.state.showAddQuote,
-      
     })
   }
 
