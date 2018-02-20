@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
 import { Button, Col, ListGroupItem } from 'react-bootstrap'
+import PropTypes from 'prop-types'
 
 export default class QuoteListItem extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
-      this.handleDeleteClick = this.handleDeleteClick.bind(this)
+    this.handleDeleteClick = this.handleDeleteClick.bind(this)
   }
-  
+
   handleDeleteClick (e) {
     e.preventDefault()
     this.props.removeItem(this.props.item.id)
   }
-  
+
   render () {
-    return(
+    return (
       <div>
         <Col md={10} mdOffset={1}>
-          <ListGroupItem 
+          <ListGroupItem
             key={this.props.item.id}
           >
             <p>"{this.props.item.quote}"</p>
@@ -31,6 +32,11 @@ export default class QuoteListItem extends Component {
           </ListGroupItem>
         </Col>
       </div>
-      )
-    }
+    )
   }
+}
+
+QuoteListItem.propTypes = {
+  item: PropTypes.object,
+  removeItem: PropTypes.func
+}

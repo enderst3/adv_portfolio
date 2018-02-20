@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { FormControl, Button, FormGroup, Well } from 'react-bootstrap'
-
+import PropTypes from 'prop-types'
 
 export default class AddQuote extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
-      this.handleAddSubmit = this.props.submitAddedQuote.bind(this)
-      this.handleChange = this.props.addQuoteInput.bind(this)
+    this.handleAddSubmit = this.props.submitAddedQuote.bind(this)
+    this.handleChange = this.props.addQuoteInput.bind(this)
   }
 
   render () {
@@ -17,17 +17,17 @@ export default class AddQuote extends Component {
         >
           <FormGroup>
             <FormControl
-              type="text"
-              name="author"
-              placeholder="Add Author of the Quote..."
+              type='text'
+              name='author'
+              placeholder='Add Author of the Quote...'
               onChange={this.handleChange}
               value={this.props.author}
             />
-            <br/>
+            <br />
             <FormControl
-              type="text"
-              name="quote"
-              placeholder="Add Quote text..."
+              type='text'
+              name='quote'
+              placeholder='Add Quote text...'
               onChange={this.handleChange}
               value={this.props.quote}
             />
@@ -42,5 +42,11 @@ export default class AddQuote extends Component {
       </Well>
     )
   }
-} 
+}
 
+AddQuote.propTypes = {
+  submitAddedQuote: PropTypes.func,
+  addQuoteInput: PropTypes.func,
+  quote: PropTypes.string,
+  author: PropTypes.string
+}

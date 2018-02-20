@@ -2,15 +2,15 @@
 // display quote of the day
 
 import React from 'react'
-
+import PropTypes from 'prop-types'
 
 const DisplayQuoteOd = ({QuoteOd}) => {
   if (!QuoteOd) {
-    return(
+    return (
       <div>Loading...</div>
     )
   }
-  
+
   return (
     <div className='QuotePanel'>
       <p>{QuoteOd.quote}</p>
@@ -22,3 +22,10 @@ const DisplayQuoteOd = ({QuoteOd}) => {
 }
 
 export default DisplayQuoteOd
+
+DisplayQuoteOd.propTypes = {
+  QuoteOd: PropTypes.oneOfType ([
+    PropTypes.array,
+    PropTypes.object
+  ])
+}

@@ -1,23 +1,22 @@
 import React, { Component } from 'react'
 import { Button, Col, ListGroupItem } from 'react-bootstrap'
 import { InstantSearch, SearchBox, Hits } from 'react-instantsearch/dom'
+import PropTypes from 'prop-types'
 import QuoteList from './QuoteList'
 
-
 const Hit = ({ hit }) =>
-<Col md={10} mdOffset={1}>
-  <ListGroupItem 
-  >
-    <p>"{hit.quote}"</p>
-    <p>-{hit.author}</p>
-  </ListGroupItem>
-</Col>
+  <Col md={10} mdOffset={1}>
+    <ListGroupItem
+    >
+      <p>"{hit.quote}"</p>
+      <p>-{hit.author}</p>
+    </ListGroupItem>
+  </Col>
 
 const Content = () =>
   <div className='content'>
     <Hits hitComponent={Hit} />
   </div>
-
 
 export default class DisplayQuoteList extends Component {
   constructor (props) {
@@ -31,7 +30,6 @@ export default class DisplayQuoteList extends Component {
     this.props.openSearchBar()
   }
 
-  
   render () {
     if (!this.props.showSearchBar) {
       return (
@@ -43,7 +41,7 @@ export default class DisplayQuoteList extends Component {
             Search My Quotes
           </Button>
           <br />
-          <QuoteList 
+          <QuoteList
             items={this.props.items}
             removeItem={this.props.removeItem}
           />
@@ -61,19 +59,24 @@ export default class DisplayQuoteList extends Component {
         <br />
         <br />
         <InstantSearch
-          appId="U7JUNZSA3C"
-          apiKey="616990183d84b364679688900dba1266"
-          indexName="QuoteData"
+          appId='U7JUNZSA3C'
+          apiKey='616990183d84b364679688900dba1266'
+          indexName='QuoteData'
         >
           <SearchBox
-            translations={{placeholder:'Search Your Quotes...'}}
+            translations={{placeholder: 'Search Your Quotes...'}}
           />
           <br />
           <br />
           <Content />
         </InstantSearch>
       </div>
-      
+
     )
   }
+}
+
+DisplayQuoteList.propTypes = {
+  removeItem: PropTypes.func,
+  items: PropTypes.array
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Jumbotron, Col, Panel, Button } from 'react-bootstrap'
 import DisplayQuoteOd from './DisplayQuoteOd'
 import firebase from './firebase'
@@ -6,15 +6,15 @@ import AddQuote from './AddQuote'
 import DisplayQuoteList from './DisplayQuoteList'
 import './App.css'
 
-const url = "https://talaikis.com/api/quotes/random/"
+/* global fetch */
+
+const url = 'https://talaikis.com/api/quotes/random/'
 const itemsRef = firebase.database().ref('QuoteData')
 
 // add proptypes
-// set up linting
 
-
-class App extends Component {
-  constructor(props) {
+export default class App extends Component {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -35,7 +35,7 @@ class App extends Component {
   componentWillMount () {
     fetch(url)
       .then((response) => {
-        return response.json();
+        return response.json()
       }).then(QuoteOd => {
         this.setState({QuoteOd: QuoteOd})
         console.log('success', this.state.QuoteOd)
@@ -45,7 +45,7 @@ class App extends Component {
 
     itemsRef.on('value', (snapshot) => {
       let items = snapshot.val()
-      let newState =[]
+      let newState = []
       for (let item in items) {
         newState.push({
           id: item,
@@ -70,13 +70,13 @@ class App extends Component {
   }
 
   // removes quote from firebase
-  removeItem(itemId) {
+  removeItem (itemId) {
     const itemRef = firebase.database().ref(`/QuoteData/${itemId}`)
     itemRef.remove()
   }
 
   // captures text for the quote
-  addQuoteInput(e) {
+  addQuoteInput (e) {
     this.setState({
       // gets value from both text areas
       [e.target.name]: e.target.value
@@ -84,7 +84,7 @@ class App extends Component {
   }
 
   // submits the quote data to firebase
-  submitAddedQuote(e) {
+  submitAddedQuote (e) {
     e.preventDefault()
     // resets the input areas
     e.target.reset()
@@ -106,16 +106,16 @@ class App extends Component {
     })
   }
 
-  render() {
+  render () {
     return (
-      <div className="App">
+      <div className='App'>
         <Col md={8} mdOffset={2}>
           <Panel>
             <Panel.Body>
               <Jumbotron className='Header'>
                 <h1>Quote of The Day</h1>
                 <p>____________________________</p>
-                <DisplayQuoteOd 
+                <DisplayQuoteOd
                   QuoteOd={this.state.QuoteOd}
                 />
                 <Button
@@ -128,7 +128,7 @@ class App extends Component {
                 submitAddedQuote={this.submitAddedQuote}
                 addQuoteInput={this.addQuoteInput}
               />
-              <DisplayQuoteList 
+              <DisplayQuoteList
                 items={this.state.items}
                 removeItem={this.removeItem}
                 openSearchBar={this.openSearchBar}
@@ -142,8 +142,6 @@ class App extends Component {
           </Panel>
         </Col>
       </div>
-    );
+    )
   }
 }
-
-export default App;
