@@ -11,7 +11,6 @@ import './App.css'
 const url = 'https://talaikis.com/api/quotes/random/'
 const itemsRef = firebase.database().ref('QuoteData')
 
-// add proptypes
 
 export default class App extends Component {
   constructor (props) {
