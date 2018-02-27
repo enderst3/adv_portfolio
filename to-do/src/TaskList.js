@@ -15,10 +15,12 @@ const TaskList = (props) => {
   })
 
   return (
-    <ListGroup className='TaskList'>
+    <div>
+      <ListGroup className='TaskList'>
       <br />
       {TaskData}
-    </ListGroup>
+      </ListGroup>
+    </div>
   )
 }
 
