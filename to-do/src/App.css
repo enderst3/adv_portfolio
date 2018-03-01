@@ -6,3 +6,7 @@
 p {
   font-size: 25px;
 }
+
+Button {
+  padding: 10px;
+}

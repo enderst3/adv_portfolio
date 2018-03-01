@@ -10,6 +10,9 @@ const TaskList = (props) => {
         key={item.id}
         item={item}
         removeItem={props.removeItem}
+        editTask={props.editTask}
+        addTaskInput={props.addTaskInput}
+        submitEditedTask={props.submitEditedTask}
       />
     )
   })

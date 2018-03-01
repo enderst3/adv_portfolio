@@ -17,6 +17,8 @@ class App extends Component {
     }
     this.addTaskInput = this.addTaskInput.bind(this)
     this.submitNewTask = this.submitNewTask.bind(this)
+    // this.editTask = this.editTask.bind(this)
+    this.submitEditedTask = this.submitEditedTask.bind(this)
   }
 
   // retrieves tasks from out database
@@ -58,12 +60,22 @@ class App extends Component {
     })
   }
 
+  // Deletes task for firebase
   removeItem (itemId) {
     const itemRef = firebase.database().ref(`/items/${itemId}`)
     itemRef.remove()
   }
 
+  // editTask (itemId, itemTask) {
+  //   console.log('Edit Click', itemId, itemTask)
+  // }
 
+  submitEditedTask (e) {
+    e.preventDefault()
+    console.log('edited task: ', this.state.task)
+  }
+
+  // displays the App
   render() {
     return (
       <div className="App">
@@ -80,12 +92,14 @@ class App extends Component {
             <TaskList 
               items={this.state.items}
               removeItem={this.removeItem}
+              // editTask={this.editTask}
+              addTaskInput={this.addTaskInput}
+              submitEditedTask={this.submitEditedTask}
             />
           </Panel.Body>
           <Panel.Footer>
             &copy;2018 ToDo App
           </Panel.Footer>
-       
           </Panel>
         </Col>
       </div>
