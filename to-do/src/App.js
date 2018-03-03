@@ -68,11 +68,16 @@ class App extends Component {
 
   editTask (itemId, itemTask) {
     console.log('Edit Click', itemId, itemTask)
+    const itemRef = firebase.database().ref(`/items/${itemId}`)
+    itemRef.set ({
+      task: itemTask
+    })
   }
 
   submitEditedTask (e) {
     e.preventDefault()
     console.log('edited task: ', this.state.task)
+  
   }
 
   // displays the App
