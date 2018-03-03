@@ -17,7 +17,7 @@ class App extends Component {
     }
     this.addTaskInput = this.addTaskInput.bind(this)
     this.submitNewTask = this.submitNewTask.bind(this)
-    // this.editTask = this.editTask.bind(this)
+    this.editTask = this.editTask.bind(this)
     this.submitEditedTask = this.submitEditedTask.bind(this)
   }
 
@@ -66,9 +66,9 @@ class App extends Component {
     itemRef.remove()
   }
 
-  // editTask (itemId, itemTask) {
-  //   console.log('Edit Click', itemId, itemTask)
-  // }
+  editTask (itemId, itemTask) {
+    console.log('Edit Click', itemId, itemTask)
+  }
 
   submitEditedTask (e) {
     e.preventDefault()
@@ -92,7 +92,7 @@ class App extends Component {
             <TaskList 
               items={this.state.items}
               removeItem={this.removeItem}
-              // editTask={this.editTask}
+              editTask={this.editTask}
               addTaskInput={this.addTaskInput}
               submitEditedTask={this.submitEditedTask}
             />

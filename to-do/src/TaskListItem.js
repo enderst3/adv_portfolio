@@ -22,7 +22,7 @@ export default class TaskListItem extends Component {
 
   handleEditClick (e) {
     e.preventDefault()
-    // this.props.editTask(this.props.item.id, this.props.item.task)
+    this.props.editTask(this.props.item.id, this.props.item.task)
     this.setState({
       isEditing: e.target.value
     })
