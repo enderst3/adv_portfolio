@@ -7,6 +7,7 @@ export default class TaskListItem extends Component {
     super(props)
     this.state = {
       isEditing: null,
+      // editingOn: false
     }
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
     this.handleEditClick = this.handleEditClick.bind(this)
@@ -60,7 +61,8 @@ export default class TaskListItem extends Component {
               </Button>
               <Button
                 bsSize='xsmall'
-                type='submit'
+                onClick={this.handleEditClick}
+                value={this.props.item.id}
               >
                 Save Edit
               </Button>
