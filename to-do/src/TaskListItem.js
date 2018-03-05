@@ -5,14 +5,11 @@ import { Button, Col, ListGroupItem, FormControl } from 'react-bootstrap'
 export default class TaskListItem extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      isEditing: null,
-      // editingOn: false
-    }
+   
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
     this.handleEditClick = this.handleEditClick.bind(this)
     this.handleChange = this.props.addTaskInput.bind(this)
-    this.handleSubmit = this.props.submitEditedTask.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
     this.handleCancelClick = this.handleCancelClick.bind(this)
   }
 
@@ -23,23 +20,25 @@ export default class TaskListItem extends Component {
 
   handleEditClick (e) {
     e.preventDefault()
-    this.props.editTask(this.props.item.id, this.props.item.task)
-    this.setState({
-      isEditing: e.target.value
-    })
+    this.props.editTask(this.props.item.id)
+    
   }
 
   handleCancelClick (e) {
-    this.setState({
-      isEditing: null
-    })
+    this.props.cancelEditing()
+  }
+
+  handleSubmit (e) {
+    e.preventDefault()
+    this.props.submitEditedTask(this.props.item.id)
   }
 
   render () {
-    if (this.state.isEditing === this.props.item.id) {
+    if (this.props.isEditing === this.props.item.id) {
       return (
         <form
           onSubmit={this.handleSubmit}
+          value={this.props.item.id}
         >
           <Col md={10} mdOffset={1}>
             <ListGroupItem
@@ -61,7 +60,7 @@ export default class TaskListItem extends Component {
               </Button>
               <Button
                 bsSize='xsmall'
-                onClick={this.handleEditClick}
+                onClick={this.handleSubmit}
                 value={this.props.item.id}
               >
                 Save Edit
@@ -80,6 +79,7 @@ export default class TaskListItem extends Component {
 
     }
     return (
+      
       <div>
         <Col md={10} mdOffset={1}>
           <ListGroupItem

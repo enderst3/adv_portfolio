@@ -13,12 +13,14 @@ class App extends Component {
     super(props)
     this.state = {
       task: '',
-      items: []
+      items: [],
+      isEditing: null
     }
     this.addTaskInput = this.addTaskInput.bind(this)
     this.submitNewTask = this.submitNewTask.bind(this)
     this.editTask = this.editTask.bind(this)
     this.submitEditedTask = this.submitEditedTask.bind(this)
+    this.cancelEditing = this.cancelEditing.bind(this)
   }
 
   // retrieves tasks from out database
@@ -67,21 +69,30 @@ class App extends Component {
   }
 
   editTask (itemId, itemTask) {
-    console.log('Edit Click', itemId, itemTask)
-    const itemRef = firebase.database().ref(`/items/${itemId}`)
-    itemRef.set ({
-      task: itemTask
+    console.log('Edit Click', itemId)
+    this.setState({
+      isEditing: itemId
     })
   }
 
   submitEditedTask (e, itemId) {
-    e.preventDefault()
+    console.log('itemId: ', itemId)
     console.log('edited task: ', this.state.task)
     const itemRef = firebase.database().ref(`/items/${itemId}`)
     itemRef.set ({
       task: this.state.task
     })
+    this.setState({
+      isEditing: null
+    })
   }
+
+  cancelEditing (e) {
+    this.setState({
+      isEditing: null
+    })
+  }
+
 
   // displays the App
   render() {
@@ -103,6 +114,8 @@ class App extends Component {
               editTask={this.editTask}
               addTaskInput={this.addTaskInput}
               submitEditedTask={this.submitEditedTask}
+              cancelEditing={this.cancelEditing}
+              isEditing={this.state.isEditing}
             />
           </Panel.Body>
           <Panel.Footer>
