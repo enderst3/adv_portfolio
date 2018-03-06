@@ -34,7 +34,7 @@ export default class TaskListItem extends Component {
   }
 
   render () {
-    if (this.props.isEditing === this.props.item.id) {
+    if (this.props.currentTask === this.props.item.id) {
       return (
         <form
           onSubmit={this.handleSubmit}
@@ -76,10 +76,9 @@ export default class TaskListItem extends Component {
           </Col>
         </form>
       )
-
     }
+    
     return (
-      
       <div>
         <Col md={10} mdOffset={1}>
           <ListGroupItem

@@ -14,7 +14,7 @@ const TaskList = (props) => {
         addTaskInput={props.addTaskInput}
         submitEditedTask={props.submitEditedTask}
         cancelEditing={props.cancelEditing}
-        isEditing={props.isEditing}
+        currentTask={props.currentTask}
       />
     )
   })
