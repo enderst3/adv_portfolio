@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Jumbotron, Col, Panel, Button } from 'react-bootstrap'
 import './App.css'
 import firebase from './firebase'
+import CreateTask from './CreateTask'
 
 
 export default class App extends Component {
@@ -14,7 +15,7 @@ export default class App extends Component {
             <Jumbotron className='Header'>
               <h1>Task List App</h1>
             </Jumbotron>
-
+            <CreateTask />
           </Panel.Body>
           <Panel.Footer>
             &copy;2018 Task List App
