@@ -9,7 +9,8 @@ export default class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      task: ''
+      task: '',
+      items: []
     }
     this.addTaskInput = this.addTaskInput.bind(this)
     this.submitNewTask = this.submitNewTask.bind(this)
@@ -36,6 +37,23 @@ export default class App extends Component {
     this.setState({
       task: ''
     })
+  }
+
+  // retrieves tasks from out database
+  componentDidMount() {
+    itemsRef.on('value', (snapshot) => {
+      let items = snapshot.val();
+      let newState = [];
+      for (let item in items) {
+        newState.push({
+          id: item,
+          task: items[item].task,
+        });
+      }
+      this.setState({
+        items: newState
+      });
+    });
   }
 
   render() {
