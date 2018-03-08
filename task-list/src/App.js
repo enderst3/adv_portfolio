@@ -1,5 +1,8 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import { Jumbotron, Col, Panel, Button } from 'react-bootstrap'
+import './App.css'
+import firebase from './firebase'
+
 
 class App extends Component {
   render() {
