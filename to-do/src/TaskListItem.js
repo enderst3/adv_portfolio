@@ -21,7 +21,6 @@ export default class TaskListItem extends Component {
   handleEditClick (e) {
     e.preventDefault()
     this.props.editTask(this.props.item.id)
-    
   }
 
   handleCancelClick (e) {
@@ -78,7 +77,7 @@ export default class TaskListItem extends Component {
         </form>
       )
     }
-    
+
     // form for displaying task list
     return (
       <div>
