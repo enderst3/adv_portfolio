@@ -1,0 +1,26 @@
+import React from 'react'
+import TaskListItem from './TaskListItem'
+import { ListGroup } from 'react-bootstrap'
+
+
+const TaskList = (props) => {
+  const TaskData = props.items.map((item) => {
+    return (
+      <TaskListItem
+        key={item.id}
+        item={item}
+      />
+    )
+  })
+
+  return (
+    <div>
+      <ListGroup className='TaskList'>
+      <br />
+      {TaskData}
+      </ListGroup>
+    </div>
+  )
+}
+
+export default TaskList

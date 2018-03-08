@@ -3,7 +3,9 @@ import { Jumbotron, Col, Panel, Button } from 'react-bootstrap'
 import './App.css'
 import firebase from './firebase'
 import CreateTask from './CreateTask'
+import TaskList from './TaskList'
 
+const itemsRef = firebase.database().ref('items')
 
 export default class App extends Component {
   constructor (props) {
@@ -68,6 +70,9 @@ export default class App extends Component {
             <CreateTask
               submitNewTask={this.submitNewTask}
               addTaskInput={this.addTaskInput}
+            />
+            <TaskList
+              items={this.state.items}
             />
           </Panel.Body>
           <Panel.Footer>
