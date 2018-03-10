@@ -12,10 +12,14 @@ export default class App extends Component {
     super(props)
     this.state = {
       task: '',
-      items: []
+      items: [],
+      currentTask: null
     }
     this.addTaskInput = this.addTaskInput.bind(this)
     this.submitNewTask = this.submitNewTask.bind(this)
+    this.editTask = this.editTask.bind(this)
+    this.submitEditedTask = this.submitEditedTask.bind(this)
+    this.cancelEditing = this.cancelEditing.bind(this)
   }
 
   // captures text for the new task
@@ -64,6 +68,34 @@ export default class App extends Component {
     itemRef.remove()
   }
 
+  // when edit button clicked, sets
+  // the currentTask state to item
+  editTask (itemId) {
+    this.setState({
+      currentTask: itemId
+    })
+  }
+
+  // submits the edited task to firebase then sets 
+  // state back to default
+  submitEditedTask (itemId) {
+    const itemRef = firebase.database().ref(`/items/${itemId}`)
+    itemRef.set ({
+      task: this.state.task
+    })
+    this.setState({
+      currentTask: null,
+      task: ''
+    })
+  }
+
+  // Cancels editing by setting state back to default
+  cancelEditing (e) {
+    this.setState({
+      currentTask: null
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -80,6 +112,11 @@ export default class App extends Component {
             <TaskList
               items={this.state.items}
               removeItem={this.removeItem}
+              editTask={this.editTask}
+              addTaskInput={this.addTaskInput}
+              submitEditedTask={this.submitEditedTask}
+              cancelEditing={this.cancelEditing}
+              currentTask={this.state.currentTask}
             />
           </Panel.Body>
           <Panel.Footer>
