@@ -9,6 +9,7 @@ const TaskList = (props) => {
       <TaskListItem
         key={item.id}
         item={item}
+        removeItem={props.removeItem}
       />
     )
   })

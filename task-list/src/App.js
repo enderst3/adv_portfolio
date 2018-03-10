@@ -58,6 +58,12 @@ export default class App extends Component {
     });
   }
 
+   // Deletes task for firebase
+   removeItem (itemId) {
+    const itemRef = firebase.database().ref(`/items/${itemId}`)
+    itemRef.remove()
+  }
+
   render() {
     return (
       <div className="App">
@@ -73,6 +79,7 @@ export default class App extends Component {
             />
             <TaskList
               items={this.state.items}
+              removeItem={this.removeItem}
             />
           </Panel.Body>
           <Panel.Footer>
