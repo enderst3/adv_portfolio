@@ -44,6 +44,11 @@ export default class DisplayQuoteList extends Component {
           <QuoteList
             items={this.props.items}
             removeItem={this.props.removeItem}
+            editQuote={this.props.editQuote}
+            selectedQuote={this.props.selectedQuote}
+            cancelEditing={this.props.cancelEditing}
+            addQuoteInput={this.props.addQuoteInput}
+            submitEditedQuote={this.props.submitEditedQuote}
           />
         </div>
       )

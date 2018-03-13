@@ -10,6 +10,11 @@ const QuoteList = (props) => {
         key={item.id}
         item={item}
         removeItem={props.removeItem}
+        editQuote={props.editQuote}
+        selectedQuote={props.selectedQuote}
+        cancelEditing={props.cancelEditing}
+        addQuoteInput={props.addQuoteInput}
+        submitEditedQuote={props.submitEditedQuote}
       />
     )
   })

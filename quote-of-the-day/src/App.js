@@ -21,12 +21,16 @@ export default class App extends Component {
       author: '',
       quote: '',
       items: [],
-      showSearchBar: false
+      showSearchBar: false,
+      selectedQuote: null
     }
     this.saveQuoteOd = this.saveQuoteOd.bind(this)
     this.submitAddedQuote = this.submitAddedQuote.bind(this)
     this.addQuoteInput = this.addQuoteInput.bind(this)
     this.openSearchBar = this.openSearchBar.bind(this)
+    this.editQuote = this.editQuote.bind(this)
+    this.cancelEditing = this.cancelEditing.bind(this)
+    this.submitEditedQuote = this.submitEditedQuote.bind(this)
   }
 
   // displays quote of the day
@@ -105,6 +109,31 @@ export default class App extends Component {
     })
   }
 
+  editQuote (itemId) {
+    this.setState({
+      selectedQuote: itemId
+    })
+  }
+
+  cancelEditing (e) {
+    this.setState({
+      selectedQuote: null
+    })
+  }
+
+  submitEditedQuote (itemId) {
+    const itemRef = firebase.database().ref(`/QuoteData/${itemId}`)
+    itemRef.set ({
+      quote: this.state.quote,
+      author: this.state.author
+    })
+    this.setState({
+      selectedQuote: null,
+      quote: '',
+      author: ''
+    })
+  }
+
   render () {
     return (
       <div className='App'>
@@ -133,6 +162,11 @@ export default class App extends Component {
                 openSearchBar={this.openSearchBar}
                 showSavedQuotes={this.showSavedQuotes}
                 showSearchBar={this.state.showSearchBar}
+                editQuote={this.editQuote}
+                selectedQuote={this.state.selectedQuote}
+                cancelEditing={this.cancelEditing}
+                addQuoteInput={this.addQuoteInput}
+                submitEditedQuote={this.submitEditedQuote}
               />
             </Panel.Body>
             <Panel.Footer>
