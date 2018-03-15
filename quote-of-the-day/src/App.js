@@ -22,7 +22,9 @@ export default class App extends Component {
       quote: '',
       items: [],
       showSearchBar: false,
-      selectedQuote: null
+      selectedQuote: null,
+      quoteEdit: '',
+      authorEdit: ''
     }
     this.saveQuoteOd = this.saveQuoteOd.bind(this)
     this.submitAddedQuote = this.submitAddedQuote.bind(this)
@@ -109,9 +111,9 @@ export default class App extends Component {
     })
   }
 
-  editQuote (itemId) {
+  editQuote (item) {
     this.setState({
-      selectedQuote: itemId
+      selectedQuote: item.id,
     })
   }
 
@@ -121,8 +123,8 @@ export default class App extends Component {
     })
   }
 
-  submitEditedQuote (itemId) {
-    const itemRef = firebase.database().ref(`/QuoteData/${itemId}`)
+  submitEditedQuote (item) {
+    const itemRef = firebase.database().ref(`/QuoteData/${item.id}`)
     itemRef.set ({
       quote: this.state.quote,
       author: this.state.author
@@ -158,6 +160,7 @@ export default class App extends Component {
               />
               <DisplayQuoteList
                 items={this.state.items}
+                item={this.item}
                 removeItem={this.removeItem}
                 openSearchBar={this.openSearchBar}
                 showSavedQuotes={this.showSavedQuotes}

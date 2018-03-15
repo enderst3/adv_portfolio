@@ -2,6 +2,13 @@ import React, { Component } from 'react'
 import { Button, Col, ListGroupItem, FormControl } from 'react-bootstrap'
 import PropTypes from 'prop-types'
 
+
+// create handleEditChange
+// it will have a default of the item.quote, and item author
+// create quoteEdit, and authorEdit states
+// if either quoteEdit, or authorEdit === ''
+// author, or quote will be used
+
 export default class QuoteListItem extends Component {
   constructor (props) {
     super(props)
@@ -20,7 +27,7 @@ export default class QuoteListItem extends Component {
 
   handleEditClick (e) {
     e.preventDefault()
-    this.props.editQuote(this.props.item.id)
+    this.props.editQuote(this.props.item)
   }
 
   handleCancelClick (e) {
@@ -29,7 +36,7 @@ export default class QuoteListItem extends Component {
 
   handleSubmit (e) {
     e.preventDefault()
-    this.props.submitEditedQuote(this.props.item.id)
+    this.props.submitEditedQuote(this.props.item)
   }
 
   render () {
@@ -45,14 +52,14 @@ export default class QuoteListItem extends Component {
                 type='text'
                 name='quote'
                 onChange={this.handleChange}
-                value={this.props.Quote}
+                value={this.props.quote}
                 defaultValue={this.props.item.quote}
               />
               <FormControl
                 type='text'
                 name='author'
                 onChange={this.handleChange}
-                value={this.props.Author}
+                value={this.props.author}
                 defaultValue={this.props.item.author}
               />
               <Button
@@ -102,7 +109,7 @@ export default class QuoteListItem extends Component {
               onClick={this.handleEditClick}
               value={this.props.item.id}
             >
-              Edit Task
+              Edit Quote
             </Button>
           </ListGroupItem>
         </Col>
