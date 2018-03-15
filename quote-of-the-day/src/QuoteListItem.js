@@ -15,9 +15,8 @@ export default class QuoteListItem extends Component {
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
     this.handleEditClick = this.handleEditClick.bind(this)
     this.handleCancelClick = this.handleCancelClick.bind(this)
-    this.handleChange = this.props.addQuoteInput.bind(this)
+    this.handleEditChange = this.props.addQuoteInput.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    
   }
 
   handleDeleteClick (e) {
@@ -51,14 +50,14 @@ export default class QuoteListItem extends Component {
               <FormControl
                 type='text'
                 name='quote'
-                onChange={this.handleChange}
+                onChange={this.handleEditChange}
                 value={this.props.quote}
                 defaultValue={this.props.item.quote}
               />
               <FormControl
                 type='text'
                 name='author'
-                onChange={this.handleChange}
+                onChange={this.handleEditChange}
                 value={this.props.author}
                 defaultValue={this.props.item.author}
               />

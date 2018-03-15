@@ -23,8 +23,8 @@ export default class App extends Component {
       items: [],
       showSearchBar: false,
       selectedQuote: null,
-      quoteEdit: '',
-      authorEdit: ''
+      // quoteEdit: '',
+      // authorEdit: ''
     }
     this.saveQuoteOd = this.saveQuoteOd.bind(this)
     this.submitAddedQuote = this.submitAddedQuote.bind(this)
@@ -114,6 +114,10 @@ export default class App extends Component {
   editQuote (item) {
     this.setState({
       selectedQuote: item.id,
+      author: item.author,
+      // authorEdit: item.author,
+      quote: item.quote,
+      // quoteEdit: item.quote
     })
   }
 
@@ -125,14 +129,29 @@ export default class App extends Component {
 
   submitEditedQuote (item) {
     const itemRef = firebase.database().ref(`/QuoteData/${item.id}`)
-    itemRef.set ({
-      quote: this.state.quote,
-      author: this.state.author
-    })
+
+    // if (this.state.quoteEdit === '') {
+    //   this.setState({
+    //     quoteEdit: this.state.quote
+    //   })
+    // }
+    // if (this.state.authorEdit === '') {
+    //   this.setState({
+    //     authorEdit: this.state.author
+    //   })
+    // }
+
+  itemRef.set ({
+    quote: this.state.quote,
+    author: this.state.author
+  })
+   
     this.setState({
       selectedQuote: null,
       quote: '',
-      author: ''
+      author: '',
+      // quoteEdit: '',
+      // authorEdit: ''
     })
   }
 
