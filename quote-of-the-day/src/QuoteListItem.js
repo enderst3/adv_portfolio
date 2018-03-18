@@ -86,8 +86,20 @@ export default class QuoteListItem extends Component {
           <ListGroupItem
             key={this.props.item.id}
           >
-            <p>"{this.props.item.quote}"</p>
-            <p>-{this.props.item.author}</p>
+            <div 
+              className='Quote'
+              onClick={this.handleEditClick}
+              value={this.props.item}
+            >
+              <p>"{this.props.item.quote}"</p>
+            </div>
+            <div 
+              className='Author'
+              onClick={this.handleEditClick}
+              value={this.props.item}
+            >
+              <p>-{this.props.item.author}</p>
+            </div>
             <Button
               bsSize='xsmall'
               onClick={this.handleDeleteClick}
