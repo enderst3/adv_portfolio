@@ -1,0 +1,28 @@
+# see https://docs.docker.com/compose/compose-file/
+
+version: "3"
+services:
+
+    web:
+        build: ./web
+        ports:
+            - "5000:8000"
+        command: ./entrypoint.sh
+        volumes:
+            - ./web:/web
+        stdin_open: true
+        tty: true
+
+    db:
+        build: ./mysql
+        container_name: flaskapp_db
+        environment:
+            MYSQL_ROOT_PASSWORD: root-password
+            MYSQL_DATABASE: flaskapp
+            MYSQL_USER: python
+            MYSQL_PASSWORD: python-pass
+        ports:
+            - "3306:3306"
+        restart: always
+        volumes:
+            - ./mysql/data:/var/lib/mysql
