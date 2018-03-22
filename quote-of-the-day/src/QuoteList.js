@@ -18,7 +18,6 @@ const QuoteList = (props) => {
       />
     )
   })
-
   return (
     <ListGroup className='QuoteList'>
       <br />

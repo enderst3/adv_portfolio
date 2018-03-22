@@ -1,10 +1,14 @@
+import datetime
+import os
+import logging
 from app import create_app
 
 # call create_app() in app/__init__.py 
-app = create_app()
+app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 
 @app.route('/')
 def hello_flaskapp():
+    logging.info("hello_flaskapp()")
     return 'Hello folks'
 
 # run "docker ps" to get the flaskapp_web CONTAINER_ID
@@ -14,16 +18,15 @@ def hello_flaskapp():
 @app.route('/debug')
 def hello_debug():
     import pdb; pdb.set_trace()
+    logging.info("hello_debug()")
     return "Hello Python Debugger"
 
 @app.route('/info/date')
 def info_date():
-    import datetime
     ts = datetime.datetime.now().strftime("%Y/%m/%d @ %H:%M:%S")
-
     return "Current Datetime : %s" % ts
 
 @app.route('/info/config')
 def app_config():
     cnf = dict(app.config)
-    return 'Current Config : %s' % cnf
+    return "'%s' Config : %s" % (os.getenv('FLASK_CONFIG'),cnf)
