@@ -26,7 +26,7 @@ export default class App extends Component {
     this.setState({
       selectedCity: item.name,
       selectedOffset: item.offset,
-      currentUTC: now.toUTCString()
+      currentUTC: now.toUTCString(item.offset)
     })
   }
 
