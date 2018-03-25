@@ -2,6 +2,7 @@ import logging
 from flask import Flask
 from config import config
 
+
 def create_app(config_name):
     app = Flask(__name__)
 
@@ -10,7 +11,15 @@ def create_app(config_name):
 
     init_logging(app)
 
+
+    from .main import main as main_blueprint
+    app.register_blueprint(main_blueprint)
+
+    from .item import item as item_blueprint
+    app.register_blueprint(item_blueprint)
+
     return app
+
 
 def init_logging(app):
     logging.basicConfig( filename = app.config['LOG_FILE'], level = app.config['LOG_LEVEL'] )
