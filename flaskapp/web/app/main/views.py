@@ -22,6 +22,13 @@ def main_page(page):
         logging.info('TemplateNotFound: %s.html' % (page))
         abort(404)
 
+@main.route('/info/')
+def main_info():
+    result = ''
+    result += '<br/><a href="'+url_for('.info_date')+'">show datetime</a>'
+    result += '<br/><a href="'+url_for('.info_config')+'">show app.config</a>'
+    result += '<br/><a href="'+url_for('.info_url_map')+'">show url_map</a>'
+    return result
 
 @main.route('/info/date')
 def info_date():
