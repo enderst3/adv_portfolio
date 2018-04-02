@@ -90,7 +90,13 @@
     </div>
     {% endblock %}
 
-{% endblock %}
+    {% if config['DEBUG'] %}
+        <div id="debuginfo"><pre>
+        DEBUG:
+        TEMPLATES: {% block templates %}base.html{% endblock %}
+        </pre></div>
+    {% endif %}
 
+{% endblock %}
 
 {# end web/app/main/templates/base.html #}

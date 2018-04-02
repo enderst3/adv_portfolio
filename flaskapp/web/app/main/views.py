@@ -16,8 +16,7 @@ def main_home():
 def main_page(page):
     try:
         logging.debug( "main_page( %s )" % page )
-        title = "FlaskApp Page"
-        return render_template('%s.html' % (page), page_title=title)
+        return render_template('%s.html' % (page))
     except TemplateNotFound:
         logging.info('TemplateNotFound: %s.html' % (page))
         abort(404)
@@ -28,7 +27,9 @@ def main_info():
     result += '<br/><a href="'+url_for('.info_date')+'">show datetime</a>'
     result += '<br/><a href="'+url_for('.info_config')+'">show app.config</a>'
     result += '<br/><a href="'+url_for('.info_url_map')+'">show url_map</a>'
+    result += '<br/><a href="'+url_for('.info_request')+'">show request</a>'
     return result
+
 
 @main.route('/info/date')
 def info_date():
@@ -45,3 +46,24 @@ def info_config():
 @main.route('/info/url_map')
 def info_url_map():
     return "current_app.url_map :<pre> %s </pre>" % escape(current_app.url_map)
+
+@main.route('/info/request')
+def info_request():
+    result = '<b>REQUEST</b>'
+    result += "<br/><b>request.method</b> : %s" % request.method
+    result += "<br/><b>request.args</b>"
+    for key in sorted(request.args.keys()):
+        result += "<br/>[%s] : %s" % (key,request.args[key])
+    result += "<br/><b>request.form</b>"
+    for key in sorted(request.form.keys()):
+        result += "<br/>[%s] : %s" % (key,request.form[key])
+    result += "<br/><b>request.files</b>"
+    for key in sorted(request.files.keys()):
+        result += "<br/>[%s] : %s" % (key,request.files[key])
+    result += "<br/><b>request.cookies</b>"
+    for key in sorted(request.cookies.keys()):
+        result += "<br/>[%s] : %s" % (key,request.cookies[key])
+    result += "<br/><b>request.environ</b>"
+    for key in sorted(request.environ.keys()):
+        result += "<br/>[%s] : %s" % (key,request.environ[key])
+    return result
