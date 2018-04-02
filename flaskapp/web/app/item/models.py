@@ -19,4 +19,4 @@ class ItemModel(db.Model):
         return json_item
 
     def __repr__(self):
-        return '<Item %r>' % (self.id)
+        return '<ItemModel: id="%r", keyname="%r">' % (self.id, self.keyname)
