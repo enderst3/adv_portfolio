@@ -1,14 +1,16 @@
+# @see http://flask.pocoo.org/docs/0.12/api/
+
 import os
 import logging
-
-# see http://flask.pocoo.org/docs./0.12/api
 
 _basedir = os.path.abspath(os.path.dirname(__file__))
 
 class AppConfig(object):
-    SECRET_KEY = os.environ.get('SECRET_KEY') or ';lakjds;flkjasd;lfkjasdf'
-    LOG_FILE = _basedir+'/log/flaskapp.log'
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'kp-cUHRAYH1n-sPaJICcEE2kOpU62mCk'
+    LOG_FILE = _basedir+'/logs/flaskapp.log'
     LOG_LEVEL = logging.ERROR  # CRITICAL,ERROR,WARNING,INFO,DEBUG,NOTSET
+    BOOTSTRAP_USE_MINIFIED = True
+    BOOTSTRAP_SERVE_LOCAL = True
     MYSQL_USER = 'python'
     MYSQL_PASSWORD = 'python-pass'
     MYSQL_DB = 'flaskapp'
@@ -24,10 +26,12 @@ class AppConfig(object):
     def init_app(app):
         pass
 
+
 class DevelopmentConfig(AppConfig):
     DEBUG = True
     LOG_LEVEL = logging.DEBUG
     SQLALCHEMY_RECORD_QUERIES = True
+
 
 class TestingConfig(AppConfig):
     TESTING = True
@@ -35,21 +39,21 @@ class TestingConfig(AppConfig):
     #SQLALCHEMY_ECHO = True
     WTF_CSRF_ENABLED = False
 
+
 class ProductionConfig(AppConfig):
     DEBUG = False
     TESTING = False
     LOG_LEVEL = logging.WARNING
-    BOOTSTRAP_USE_MINIFIED = True
-    BOOTSTRAP_SERVE_LOCAL = True
 
     @classmethod
     def init_app(cls, app):
-        # multi-stop setups could go here
+        # multi-step setups could go here
         AppConfig.init_app(app)
+
 
 config = {
     'development': DevelopmentConfig,
-    'testing': TestingConfig,
-    'production': ProductionConfig,
-    'default': DevelopmentConfig
+    'testing':     TestingConfig,
+    'production':  ProductionConfig,
+    'default':     DevelopmentConfig
 }

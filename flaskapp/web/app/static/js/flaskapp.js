@@ -2,10 +2,9 @@
  * util method
  * @see somepage.html
  */
-
- function doTest( param ) {
-     alert('doTest('+param+')');
- }
+function doTest( param ) {
+    alert("doTest("+param+")");
+}
 
 
 /**
@@ -19,3 +18,16 @@ $(document).ready(function () {
         return false;
     });
 });
+
+
+/**
+ * Check/Uncheck all checkboxes with name attribute matching 'input_name'
+ * @see item_list.html
+ */
+function checkAll( input_name, input_checked ) {
+    //alert( "checkAll( "+input_name+", "+input_checked+" )" );
+    $("input[type='checkbox']").each( function () {
+        if ($(this).prop("name") != input_name) { return; }
+        $(this).prop( "checked", input_checked );
+    });
+}

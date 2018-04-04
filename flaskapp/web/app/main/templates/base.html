@@ -31,10 +31,10 @@
         <div class="row">
             <div id="header_left" class="col-md-4">
                 {% block header_left %}
-                <a href="{{ url_for('main.main_home') }}">
-                    <img id="site_logo" src="/static/media/pdxcodeguild.png" width="80" />
-                </a>
-                <span id="site_title">FlaskApp</span>
+<a href="{{ url_for('main.main_home') }}">
+<img id="site_logo" src="/static/media/pdxcodeguild.png" width="80" />
+</a>
+<span id="site_title">FlaskApp</span>
                 {% endblock %}
             </div>
             <div id="header_center" class="col-md-4 text-center">
@@ -42,6 +42,11 @@
             </div>
             <div id="header_right" class="col-md-4 text-right">
                 {% block header_right %}{% endblock %}
+                {% if current_user.user_email %}
+                    <a href="{{ url_for('user.user_profile') }}">{{ current_user.user_email }}</a>
+                {% else %}
+                    <a href="{{ url_for('user.user_login') }}">Login</a>
+                {% endif %}
             </div>
         </div>
         <div class="row">
@@ -62,7 +67,7 @@
             </div>
         </div>
     </div>
-    
+
     {% block main %}
     <div id="main" class="container-fluid layout-1col">
         <div class="row">
@@ -91,13 +96,19 @@
     {% endblock %}
 
     {% if config['DEBUG'] %}
-        <div id="debuginfo"><pre>
-        DEBUG:
-        TEMPLATES: {% block templates %}base.html{% endblock %}
-        REQUEST.ARGS: {{ request.args }}
-        </pre></div>
+<div id="debuginfo"><pre>
+DEBUG:
+{% if current_user.user_email %}<b>LOGGED IN:</b> {{ current_user.user_email }}{% else %}<b>LOGGED OUT</b>{% endif %}
+<b>TEMPLATES:</b> {% block templates %}base.html{% endblock %}
+<b>REQUEST.ARGS:</b> {{ request.args }}
+<b>REQUEST.COOKIES:</b> {{ request.cookies }}
+<b>SESSION:</b> {{ session }}
+<b>QUERIES :</b> {{ debug_queries() }}
+<b>DATETIME :</b> {{ current_datetime() }}
+</pre></div>
     {% endif %}
 
 {% endblock %}
+
 
 {# end web/app/main/templates/base.html #}

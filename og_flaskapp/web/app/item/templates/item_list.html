@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+<!-- BLOCK: title -->
+{% block title %}{{super()}} - Items{% endblock %}
+ 
+ 
+<!-- BLOCK: breadcrumb -->
+{% block breadcrumb %}
+{{super()}}
+<li><a href="{{ url_for('main.main_page', page='admin') }}">Admin</a></li>
+<li><a href="{{ url_for('.item_list') }}">Items</a></li>
+{% endblock %}
+
+
+<!-- BLOCK: content -->
+{% block content %}
+
+
+<form class="form-inline" action="{{ url_for('.item_action') }}" method="post"></form>
+
+<div id="item_list_panel" class="panel panel-info">
+    <div class="panel-heading">
+
+<div class="table-responsive">
+<table class="table table-condensed table-borderless">
+<tr>
+<td>
+Showing {{ rowcnt }} Items
+</td>
+<td class="text-right">
+    <span>Page 1 of 1</span>
+</td>
+</tr>
+<tr>
+<td>
+    [ <a href="{{ url_for('.item_create') }}">Create Item</a> ]
+</td>
+<td class="text-right">
+    [<a href="{{ url_for('.item_list') }}?status=all">All</a>]
+    [<a href="{{ url_for('.item_list') }}?status=active">Active</a>]
+    [<a href="{{ url_for('.item_list') }}?status=inactive">Inactive</a>]
+</td>
+</tr>
+</table>
+</div>
+
+    </div> <!-- end class="panel-heading" -->
+    <div class="panel-body">
+
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<tr>
+<th></th>
+{% for col in cols %}
+    <th>{{ col }}</th>
+{% endfor %}
+<th></th>
+</tr>
+
+{% for row in rows %}
+    <tr>
+       <td>
+            <input type="checkbox" name="item_id" value="{{row.id}}">
+        </td>
+    {% for col in cols %}
+        <td onclick="window.location='{{ url_for('.item_view', id=row.id) }}';">{{ row[col] }}</td>
+    {% endfor %}
+    <td>
+    [ <a href="{{ url_for('.item_edit', id=row.id) }}">edit</a> ]
+    </td>
+    </tr>
+{% endfor %}
+
+</table>
+</div>
+
+    </div> <!-- end class="panel-body" -->
+    <div class="panel-footer">
+            <div id="list-actions">
+                <div class="form-group">
+                    <label for="action" class="sr-only">Action</label>
+                    <select id="action" name="action" class="form-control">
+                        <option value="">Selected Items...</option>
+                        <option value="active">Set Active</option>
+                        <option value="inactive">Set Inactive</option>
+                        <option value="delete">Delete</option>
+                    </select>
+                </div>
+                <button class="btn btn-default" type="submit">Apply</button>
+            </div>
+    </div> <!-- end class="panel-footer" -->
+</div> <!-- end class="panel" -->
+</form>
+{% endblock content %}
+
+
+<!-- BLOCK: templates -->
+{% block templates %}{{super()}} - item_list.html{% endblock %}
+
+{# end web/app/item/templates/item_list.html #}
