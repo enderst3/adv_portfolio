@@ -10,4 +10,5 @@
     --access-logfile log/gunicorn-access.log \
     --error-logfile log/gunicorn-error.log \
     --log-level info \
+    --timeout 3600 \
     --reload
