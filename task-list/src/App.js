@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Jumbotron, Col, Panel, Button } from 'react-bootstrap'
+import { Jumbotron, Col, Panel } from 'react-bootstrap'
 import './App.css'
 import firebase from './firebase'
 import CreateTask from './CreateTask'
