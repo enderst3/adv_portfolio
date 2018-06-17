@@ -5,8 +5,10 @@ import { Field, reduxForm } from 'redux-form'
 class PostsNew extends Component {
   renderTitleField(field) {
     return (
-      <div>
+      <div className='form-group'>
+        <label>Title</label>
         <input
+          className='form-control'
           type='text'
           {...field.input}
         />
