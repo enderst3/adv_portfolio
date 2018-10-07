@@ -22,10 +22,10 @@ export default class PostForm extends Component {
             <label>Title: </label>
             <br />
             <input
-              type = 'text'
-              name = 'title'
-              value = {this.state.title}
-              onChange = {this.onChange}
+              type='text'
+              name='title'
+              value={this.state.title}
+              onChange={this.onChange}
             />
           </div>
           <br />
@@ -33,14 +33,14 @@ export default class PostForm extends Component {
             <label>Body: </label>
             <br />
             <textarea
-              name = 'body'
-              value = {this.state.body}
-              onChange = {this.onChange}
+              name='body'
+              value={this.state.body}
+              onChange={this.onChange}
             />
           </div>
           <br />
           <button 
-            type = 'submit'
+            type='submit'
           > 
             Submit
           </button>
