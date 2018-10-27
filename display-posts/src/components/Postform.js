@@ -23,7 +23,7 @@ class PostForm extends Component {
 
     const post = {
       title: this.state.title,
-      body: this.state.title
+      body: this.state.body
     }
 
     this.props.createPost(post)
